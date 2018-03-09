@@ -1,22 +1,25 @@
-import React, { Component } from 'react';
+import React from 'react';
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
+
+import Garden from "./components/garden";
 
 import './App.css';
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
-    );
-  }
+export function App(props) {
+  return (
+    <div className="App">
+      <Garden crops={props.gardens[0].crops} />
+    </div>
+  );
+}
+
+App.defaultProps = {
+  gardens: []
+}
+
+App.propTypes = {
+  gardens: PropTypes.arrayOf(PropTypes.object)
 }
 
 export const mapStateToProps = state => ({
