@@ -7,15 +7,15 @@ export default function GardenPlot(props) {
     return (
         <div className="garden-plot">
             <h2>{props.info.name}</h2>
-            <div>
+            <div className="garden-plot-info">
                 <span>Plant date</span>
                 <span>{props.info.plant_date}</span>
             </div>
-            <div>
+            <div className="garden-plot-info">
                 <span>Germination days</span>
                 <span>{props.info.germination_days}</span>
             </div>
-            <div>
+            <div className="garden-plot-info">
                 <span>Harvest days</span>
                 <span>{props.info.harvest_days}</span>
             </div>

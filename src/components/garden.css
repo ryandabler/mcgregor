@@ -1,3 +1,6 @@
 .garden {
-    background-color: #b3b0b0;
+    background-color: #B3B0B0;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-column-gap: 50px;
 }
