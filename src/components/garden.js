@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import GardenPlot from "./garden-plot";
 import GardenPlotNew from "./garden-plot-new";
@@ -12,7 +13,7 @@ export function Garden(props) {
     return (
         <div className="garden">
             {items}
-            <GardenPlotNew />
+            <Link className="plain-link" to={"/garden/new"}><GardenPlotNew /></Link>
         </div>
     );
 }
