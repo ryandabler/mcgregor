@@ -1,4 +1,5 @@
 import React from 'react';
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
@@ -8,9 +9,13 @@ import './App.css';
 
 export function App(props) {
   return (
+    <Router>
     <div className="App">
-      <Garden crops={props.gardens[0].crops} />
+        <Switch>
+          <Route exact path="/" component={Garden} />
+        </Switch>
     </div>
+    </Router>
   );
 }
 
