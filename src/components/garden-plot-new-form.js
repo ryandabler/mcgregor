@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import { addNewCrop } from "../actions";
 
 import "./garden-plot-new-form.css";
 
@@ -12,6 +13,14 @@ export function GardenPlotNewForm(props) {
 
     function createNewCrop(e) {
         e.preventDefault();
+        
+        const cropValues = {};
+        Object.keys(e.target.elements).forEach(key => {
+            const id = e.target.elements[key].id;
+            if (id) cropValues[id] = e.target.elements[key].value;
+        });
+
+        props.dispatch(addNewCrop(cropValues));
     }
 
     return (
@@ -52,7 +61,8 @@ export function GardenPlotNewForm(props) {
 }
 
 GardenPlotNewForm.propTypes = {
-    history: PropTypes.object
+    history: PropTypes.object,
+    dispatch: PropTypes.func
 };
 
 export default connect()(GardenPlotNewForm);
