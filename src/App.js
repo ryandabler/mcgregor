@@ -10,11 +10,11 @@ import './App.css';
 export function App(props) {
   return (
     <Router>
-    <div className="App">
+      <div className="App">
         <Switch>
           <Route exact path="/" component={Garden} />
         </Switch>
-    </div>
+      </div>
     </Router>
   );
 }
@@ -27,7 +27,7 @@ App.propTypes = {
   gardens: PropTypes.arrayOf(PropTypes.object)
 }
 
-export const mapStateToProps = state => ({
+const mapStateToProps = state => ({
   email: state.email,
   gardens: state.gardens
 });
