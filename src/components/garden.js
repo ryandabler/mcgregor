@@ -8,7 +8,6 @@ import "./garden.css";
 export default function Garden(props) {
     const items = props.crops.map(crop => <GardenPlot key={crop.id}
                                                       info={crop} />);
-    
     return (
         <div className="garden">
             {items}
