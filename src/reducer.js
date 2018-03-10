@@ -3,6 +3,7 @@ const initialState = {
     gardens: [
         {
             id: "123",
+            status: "viewing",
             crops: [
                 {
                     id: "124",
