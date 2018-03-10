@@ -1,9 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { connect } from "react-redux";
 
 import "./garden-plot-new-form.css";
 
-export default function GardenPlotNewForm(props) {
+export function GardenPlotNewForm(props) {
     function cancelNewCrop(e) {
         e.preventDefault();
         props.history.push("../../");
@@ -53,3 +54,5 @@ export default function GardenPlotNewForm(props) {
 GardenPlotNewForm.propTypes = {
     history: PropTypes.object
 };
+
+export default connect()(GardenPlotNewForm);
