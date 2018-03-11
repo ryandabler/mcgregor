@@ -13,7 +13,7 @@ export function GardenPlotNewForm(props) {
 
     function createNewCrop(e) {
         e.preventDefault();
-        
+
         const cropValues = {};
         Object.keys(e.target.elements).forEach(key => {
             const name = e.target.elements[key].name;
@@ -21,6 +21,7 @@ export function GardenPlotNewForm(props) {
         });
 
         props.dispatch(addNewCrop(cropValues));
+        props.history.push("../../");
     }
 
     return (
