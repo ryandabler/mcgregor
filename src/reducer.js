@@ -1,3 +1,5 @@
+import { ADD_NEW_CROP } from "./actions";
+
 const initialState = {
     email: "rdabler@gmail.com",
     gardens: [
@@ -45,5 +47,11 @@ const initialState = {
 }
 
 export const gardenReducer = (state=initialState, action) => {
+    if (action.type === ADD_NEW_CROP) {
+        const gardens = state.gardens;
+        gardens[0].crops.push(Object.assign({}, action.values, { id: Math.floor(Math.random() * 1000)}));
+        
+        return Object.assign({}, state, { gardens} );
+    }
     return state;
 }
