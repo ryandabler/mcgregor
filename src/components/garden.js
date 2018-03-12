@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import GardenPlot from "./garden-plot";
 import GardenPlotNew from "./garden-plot-new";
+import Journal from "./journal";
 
 import "./garden.css";
 
@@ -16,6 +17,7 @@ export function Garden(props) {
                 {items}
                 <Link className="plain-link" to={"/garden/new"}><GardenPlotNew /></Link>
             </div>
+            <Journal />
         </div>
     );
 }
@@ -26,6 +28,6 @@ Garden.propTypes = {
 
 const mapStateToProps = state => ({
     crops: state.garden.crops
-  });
+});
   
   export default connect(mapStateToProps)(Garden);
