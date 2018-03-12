@@ -39,6 +39,12 @@ const initialState = {
                 date: "3/11/2018",
                 scope: "124",
                 text: "Tomatoes germinated"
+            },
+            {
+                id: "145",
+                date: "3/11/2017",
+                scope: "124",
+                text: "Tomatoes germinated"
             }
         ]
     }
