@@ -1,9 +1,10 @@
 import React from "react";
+import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
 import "./garden-plot.css";
 
-export default function GardenPlot(props) {
+export function GardenPlot(props) {
     return (
         <div className="garden-plot">
             <h2>{props.info.name}</h2>
@@ -26,3 +27,5 @@ export default function GardenPlot(props) {
 GardenPlot.propTypes = {
     info: PropTypes.object
 }
+
+export default connect()(GardenPlot);
