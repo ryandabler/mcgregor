@@ -23,7 +23,7 @@ Garden.propTypes = {
 }
 
 const mapStateToProps = state => ({
-    crops: state.gardens[0].crops
+    crops: state.garden.crops
   });
   
   export default connect(mapStateToProps)(Garden);
