@@ -7,4 +7,5 @@
     border: 10px dashed blue;
     cursor: pointer;
     font-size: 30px;
+    min-height: 142px;
 }
