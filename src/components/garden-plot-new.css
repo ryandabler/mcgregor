@@ -1,0 +1,10 @@
+.garden-plot-new {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #F5F5F5;
+    border: 10px dashed blue;
+    cursor: pointer;
+    font-size: 30px;
+}

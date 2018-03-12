@@ -1,0 +1,10 @@
+.new-crop-form {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.new-crop-form .new-crop-form-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }

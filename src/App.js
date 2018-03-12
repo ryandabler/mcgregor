@@ -1,21 +1,37 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
+import React from 'react';
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+
+import Garden from "./components/garden";
+import GardenPlotNewForm from "./components/garden-plot-new-form";
+
 import './App.css';
 
-class App extends Component {
-  render() {
-    return (
+export function App(props) {
+  return (
+    <Router>
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <Switch>
+          <Route exact path="/" component={Garden} />
+          <Route exact path="/garden/new" component={GardenPlotNewForm} />
+        </Switch>
       </div>
-    );
-  }
+    </Router>
+  );
 }
 
-export default App;
+App.defaultProps = {
+  gardens: []
+}
+
+App.propTypes = {
+  gardens: PropTypes.arrayOf(PropTypes.object)
+}
+
+const mapStateToProps = state => ({
+  email: state.email,
+  gardens: state.gardens
+});
+
+export default connect(mapStateToProps)(App);
