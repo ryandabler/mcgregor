@@ -2,11 +2,18 @@ import React from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
+import { deleteCrop } from "../actions";
+
 import "./garden-plot.css";
 
 export function GardenPlot(props) {
+    function deleteCard() {
+        props.dispatch(deleteCrop(props.info.id));
+    }
+
     return (
         <div className="garden-plot">
+            <span onClick={deleteCard} className="x">x</span>
             <h2>{props.info.name}</h2>
             <div className="garden-plot-info">
                 <span>Plant date</span>

@@ -1,4 +1,4 @@
-import { ADD_NEW_CROP } from "./actions";
+import { ADD_NEW_CROP, DELETE_CROP } from "./actions";
 
 const initialState = {
     email: "rdabler@gmail.com",
@@ -50,6 +50,17 @@ export const gardenReducer = (state=initialState, action) => {
         
         return Object.assign({}, state, { 
             garden: { crops: [ ...state.garden.crops, crop ] } } );
+    } else if (action.type === DELETE_CROP) {
+        const crops = state.garden.crops.filter(item => item.id !== action.cropId);
+
+        return Object.assign({}, state, { 
+            garden: { 
+                id: state.garden.id,
+                status: state.garden.status,
+                crops,
+                journal: state.garden.journal
+            } }
+        );
     }
     return state;
 }
