@@ -12,8 +12,10 @@ export function Garden(props) {
                                                       info={crop} />);
     return (
         <div className="garden">
-            {items}
-            <Link className="plain-link" to={"/garden/new"}><GardenPlotNew /></Link>
+            <div className="garden-plots">
+                {items}
+                <Link className="plain-link" to={"/garden/new"}><GardenPlotNew /></Link>
+            </div>
         </div>
     );
 }
