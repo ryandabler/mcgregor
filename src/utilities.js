@@ -1,8 +1,23 @@
 export function getJournalYears(journal) {
-    const years = new Set(journal.map(item => {
-        const date = new Date(item.date);
+    const years = new Set(journal.map(entry => {
+        const date = new Date(entry.date);
         return date.getFullYear();
     }));
-    
-    return Array.from(years);
+
+    return Array.from(years).sort((a, b) => b - a);
+}
+
+export function getJournalEntriesByYear(journal, year) {
+    return journal.filter(entry => {
+        const date = new Date(entry.date);
+        return date.getFullYear() === year;
+    });
+}
+
+export function sortJournalByDate(journal) {
+    return journal.sort((a, b) => {
+        const aDate = new Date(a.date),
+              bDate = new Date(b.date);
+        return bDate - aDate;
+    })
 }
