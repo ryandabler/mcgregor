@@ -26,7 +26,6 @@ export function Journal(props) {
                                                          year={year}
                                                          entries={journalByYear[idx]}
                                                          toggle={toggleDisplay} />);
-
     
     return (
         <div className="journal">
@@ -36,11 +35,17 @@ export function Journal(props) {
 }
 
 Journal.propTypes = {
-    entries: PropTypes.array
+    entries: PropTypes.array,
+    filter: PropTypes.string
 }
 
-const mapStateToProps = state => ({
-    entries: state.garden.journal
-});
+const mapStateToProps = (state, props) => {
+    const entries = props.filter ? 
+        state.garden.journal.filter(entry => entry.scope === props.filter) :
+        state.garden.journal; 
+    return {
+        entries
+    }
+};
 
 export default connect(mapStateToProps)(Journal);
