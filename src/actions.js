@@ -9,3 +9,9 @@ export const deleteCrop = cropId => ({
     type: DELETE_CROP,
     cropId
 });
+
+export const CREATE_JOURNAL_ENTRY = "CREATE_JOURNAL_ENTRY";
+export const createJournalEntry = values => ({
+    type: CREATE_JOURNAL_ENTRY,
+    values
+})
