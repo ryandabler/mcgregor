@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import Journal from "./journal.js";
 
 import "./garden-plot-detail.css";
 
@@ -30,12 +31,14 @@ export function GardenPlotDetails(props) {
                 <span>{props.crop.seed_spacing}</span>
             </div>
             <h3>Journal</h3>
+            <Journal scope={props.match.params.id} filter={props.match.params.id} />
         </div>
     )
 }
 
 GardenPlotDetails.propTypes = {
-    crop: PropTypes.object
+    crop: PropTypes.object,
+    match: PropTypes.object
 }
 
 const mapStateToProps = (state, props) => {
