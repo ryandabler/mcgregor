@@ -21,17 +21,19 @@ export function Garden(props) {
                 {items}
                 <Link className="plain-link" to={"/garden/new"}><GardenPlotNew /></Link>
             </div>
-            <Journal />
+            <Journal scope={props.id} />
         </div>
     );
 }
 
 Garden.propTypes = {
-    crops: PropTypes.arrayOf(PropTypes.object)
+    crops: PropTypes.arrayOf(PropTypes.object),
+    id: PropTypes.string
 }
 
 const mapStateToProps = state => ({
-    crops: state.garden.crops
+    crops: state.garden.crops,
+    id: state.garden.id
 });
   
   export default connect(mapStateToProps)(Garden);
