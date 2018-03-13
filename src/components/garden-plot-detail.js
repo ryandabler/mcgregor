@@ -7,7 +7,10 @@ import "./garden-plot-detail.css";
 export function GardenPlotDetails(props) {
     return (
         <div className="garden-plot-detail">
-            <h2>{props.crop.name}</h2>
+            <h2>
+                {props.crop.name}
+                <span className="variety">{props.crop.variety}</span>
+            </h2>
             <h3>Grow information</h3>
             <div className="grid group growing-group">
                 <span>Plant date</span>
