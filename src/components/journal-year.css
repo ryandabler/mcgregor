@@ -1,7 +1,6 @@
 .journal-year {
     width: 65%;
-    margin: 0 auto;
-    padding: 10px;
+    margin: 5px auto 0 auto;
     text-align: left;
 }
 
@@ -9,7 +8,7 @@
     background-color: pink;
     font-size: 25px;
     cursor: pointer;
-    padding: 5px;
+    padding: 15px;
 }
 
 .journal-year .journal-entries {
