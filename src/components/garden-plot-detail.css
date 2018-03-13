@@ -1,0 +1,34 @@
+.garden-plot-detail {
+    width: 40%;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid yellow;
+    background-color: yellow;
+}
+
+.garden-plot-detail .variety {
+    display: block;
+    font-size: 15px;
+}
+
+.garden-plot-detail .variety::before {
+    content: "(";
+}
+
+.garden-plot-detail .variety::after {
+    content: ")";
+}
+
+.garden-plot-detail h3, .garden-plot-detail .group span:nth-child(odd) {
+    text-align: left;
+}
+
+.garden-plot-detail .group span:nth-child(even) {
+    text-align: right;
+}
+
+.garden-plot-detail .grid {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    grid-column-gap: 50px;
+}

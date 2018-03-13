@@ -9,28 +9,20 @@ export function GardenPlotDetails(props) {
         <div className="garden-plot-detail">
             <h2>{props.crop.name}</h2>
             <h3>Grow information</h3>
-            <div className="group">
+            <div className="grid group growing-group">
                 <span>Plant date</span>
                 <span>{props.crop.plant_date}</span>
-            </div>
-            <div className="group">
                 <span>Days to germination</span>
                 <span>{props.crop.germination_days}</span>
-            </div>
-            <div className="group">
                 <span>Days to harvest</span>
                 <span>{props.crop.harvest_days}</span>
             </div>
             <h3>Planting information</h3>
-            <div className="group">
+            <div className="grid group planting-group">
                 <span>Planting depth (in.)</span>
                 <span>{props.crop.planting_depth}</span>
-            </div>
-            <div className="group">
                 <span>Row spacing (in.)</span>
                 <span>{props.crop.row_spacing}</span>
-            </div>
-            <div className="group">
                 <span>Seed spacing (in.)</span>
                 <span>{props.crop.seed_spacing}</span>
             </div>
