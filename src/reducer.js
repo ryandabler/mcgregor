@@ -9,9 +9,13 @@ const initialState = {
             {
                 id: "124",
                 name: "Tomato",
+                variety: "Heirloom",
                 plant_date: "3/1/2018",
                 germination_days: "10",
-                harvest_days: "50"
+                harvest_days: "50",
+                planting_depth: "1",
+                row_spacing: "1.5",
+                seed_spacing: "1.6"
             },
             {
                 id: "128",
