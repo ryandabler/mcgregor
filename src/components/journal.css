@@ -1,0 +1,31 @@
+.journal .new-entry {
+    display: flex;
+    justify-content: space-between;
+    width: 65%;
+    margin: 5px auto 0 auto;
+}
+
+.journal .new-entry input[type=text] {
+    width: 100%;
+}
+
+.journal .new-date {
+    flex: none;
+}
+
+.journal .new-text {
+    flex: 0 0 60%;
+}
+
+.journal .new-date, .journal .new-text {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.journal .cmd-btns {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    flex: 0 0 12%;
+}
