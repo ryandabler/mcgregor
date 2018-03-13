@@ -9,8 +9,12 @@ import Journal from "./journal";
 import "./garden.css";
 
 export function Garden(props) {
-    const items = props.crops.map(crop => <GardenPlot key={crop.id}
-                                                      info={crop} />);
+    const items = props.crops.map(crop =>
+        <Link key={crop.id} className="plain-link" to={`/garden/${crop.id}`}>
+            <GardenPlot info={crop} />
+        </Link>
+    );
+
     return (
         <div className="garden">
             <div className="garden-plots">
