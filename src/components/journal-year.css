@@ -1,0 +1,22 @@
+.journal-year {
+    width: 65%;
+    margin: 5px auto 0 auto;
+    text-align: left;
+}
+
+.journal-year .journal-header {
+    background-color: pink;
+    font-size: 25px;
+    cursor: pointer;
+    padding: 15px;
+}
+
+.journal-year .journal-entries {
+    display: table;
+    width: 100%;
+    border: 1px solid pink;
+}
+
+.journal-year .journal-entries.hidden {
+    display: none;
+}

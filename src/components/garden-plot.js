@@ -32,7 +32,8 @@ export function GardenPlot(props) {
 }
 
 GardenPlot.propTypes = {
-    info: PropTypes.object
+    info: PropTypes.object,
+    dispatch: PropTypes.func
 }
 
 export default connect()(GardenPlot);
