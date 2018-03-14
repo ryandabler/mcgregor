@@ -1,4 +1,11 @@
-import { ADD_NEW_CROP, DELETE_CROP, CREATE_JOURNAL_ENTRY } from "./actions";
+import {
+    ADD_NEW_CROP,
+    DELETE_CROP,
+    CREATE_JOURNAL_ENTRY,
+    DELETE_JOURNAL_ENTRY,
+    EDIT_JOURNAL_ENTRY,
+    CANCEL_EDIT_JOURNAL_ENTRY
+} from "./actions";
 
 const initialState = {
     email: "rdabler@gmail.com",
@@ -83,6 +90,48 @@ export const gardenReducer = (state=initialState, action) => {
                 status: state.garden.status,
                 crops: state.garden.crops,
                 journal: [ ...state.garden.journal, newJournalEntry ]
+            } }
+        );
+    } else if (action.type === DELETE_JOURNAL_ENTRY) {
+        const journal = state.garden.journal.filter(item => item.id !== action.id);
+        return Object.assign({}, state, {
+            garden: {
+                id: state.garden.id,
+                status: state.garden.status,
+                crops: state.garden.crops,
+                journal
+            } }
+        );
+    } else if (action.type === EDIT_JOURNAL_ENTRY) {
+        const journal = state.garden.journal.map(item => 
+            item.id === action.id ?
+                { id: item.id, date: item.date, scope: item.scope, text: item.text, status: "editing"} :
+                item
+        );
+
+        return Object.assign({}, state, {
+            garden: {
+                id: state.garden.id,
+                status: state.garden.status,
+                crops: state.garden.crops,
+                journal
+            } }
+        );
+    } else if (action.type === CANCEL_EDIT_JOURNAL_ENTRY) {
+        const journal = state.garden.journal.map(item => ({
+            id: item.id,
+            date: item.date,
+            scope: item.scope,
+            text: item.text,
+            status: "viewing"})
+        );
+        
+        return Object.assign({}, state, {
+            garden: {
+                id: state.garden.id,
+                status: state.garden.status,
+                crops: state.garden.crops,
+                journal
             } }
         );
     }
