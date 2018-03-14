@@ -28,6 +28,12 @@ export const editJournalEntry = id => ({
     id
 });
 
+export const SAVE_JOURNAL_ENTRY = "SAVE_JOURNAL_ENTRY";
+export const saveJournalEntry = values => ({
+    type: SAVE_JOURNAL_ENTRY,
+    values
+});
+
 export const CANCEL_EDIT_JOURNAL_ENTRY = "CANCEL_EDIT_JOURNAL_ENTRY";
 export const cancelEditJournalEntry = () => ({
     type: CANCEL_EDIT_JOURNAL_ENTRY,

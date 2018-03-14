@@ -4,6 +4,7 @@ import {
     CREATE_JOURNAL_ENTRY,
     DELETE_JOURNAL_ENTRY,
     EDIT_JOURNAL_ENTRY,
+    SAVE_JOURNAL_ENTRY,
     CANCEL_EDIT_JOURNAL_ENTRY
 } from "./actions";
 
@@ -115,6 +116,19 @@ export const gardenReducer = (state=initialState, action) => {
                 status: state.garden.status,
                 crops: state.garden.crops,
                 journal
+            } }
+        );
+    } else if (action.type === SAVE_JOURNAL_ENTRY) {
+        const entry = state.garden.journal.find(item => item.id === action.values.id);
+        const newEntry = Object.assign({}, entry, action.values);
+        const journal = state.garden.journal.filter(item => item.id !== action.values.id);
+
+        return Object.assign({}, state, {
+            garden: {
+                id: state.garden.id,
+                status: state.garden.status,
+                crops: state.garden.crops,
+                journal: [...journal, newEntry]
             } }
         );
     } else if (action.type === CANCEL_EDIT_JOURNAL_ENTRY) {
