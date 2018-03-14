@@ -108,8 +108,8 @@ export const gardenReducer = (state=initialState, action) => {
             return item;
         });
         
-        return Object.assign({}, state, { 
-            garden: { 
+        return Object.assign({}, state, {
+            garden: {
                 id: state.garden.id,
                 status: state.garden.status,
                 crops,
@@ -131,6 +131,7 @@ export const gardenReducer = (state=initialState, action) => {
         );
     } else if (action.type === CREATE_JOURNAL_ENTRY) {
         const newJournalEntry = Object.assign({}, action.values, { id: Math.floor(Math.random() * 1000).toString() })
+
         return Object.assign({}, state, { 
             garden: {
                 id: state.garden.id,
@@ -141,6 +142,7 @@ export const gardenReducer = (state=initialState, action) => {
         );
     } else if (action.type === DELETE_JOURNAL_ENTRY) {
         const journal = state.garden.journal.filter(item => item.id !== action.id);
+
         return Object.assign({}, state, {
             garden: {
                 id: state.garden.id,
