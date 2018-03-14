@@ -106,8 +106,8 @@ export const gardenReducer = (state=initialState, action) => {
     } else if (action.type === EDIT_JOURNAL_ENTRY) {
         const journal = state.garden.journal.map(item => 
             item.id === action.id ?
-                { id: item.id, date: item.date, scope: item.scope, text: item.text, status: "editing"} :
-                item
+                { id: item.id, date: item.date, scope: item.scope, text: item.text, status: "editing" } :
+                { id: item.id, date: item.date, scope: item.scope, text: item.text, status: "viewing" }
         );
 
         return Object.assign({}, state, {
