@@ -5,7 +5,9 @@ import JournalEntry from "./journal-entry";
 import "./journal-year.css";
 
 export default function JournalYear(props) {
-    const entries = props.entries.map(entry => <JournalEntry key={entry.id} 
+    const entries = props.entries.map(entry => <JournalEntry key={entry.id}
+                                                             id={entry.id}
+                                                             status={entry.status}
                                                              date={entry.date}
                                                              scope={entry.scope}
                                                              text={entry.text} />);
