@@ -30,25 +30,29 @@ const initialState = {
                 id: "125",
                 date: "2/1/2018",
                 scope: "123",
-                text: "Tilled garden"
+                text: "Tilled garden",
+                status: "viewing"
             },
             {
                 id: "126",
                 date: "3/1/2018",
                 scope: "124",
-                text: "Planted tomatoes"
+                text: "Planted tomatoes",
+                status: "viewing"
             },
             {
                 id: "127",
                 date: "3/11/2018",
                 scope: "124",
-                text: "Tomatoes germinated"
+                text: "Tomatoes germinated",
+                status: "viewing"
             },
             {
                 id: "145",
                 date: "3/11/2017",
                 scope: "124",
-                text: "Tomatoes germinated"
+                text: "Tomatoes germinated",
+                status: "viewing"
             }
         ]
     }
