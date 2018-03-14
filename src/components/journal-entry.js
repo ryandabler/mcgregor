@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { deleteJournalEntry, editJournalEntry, cancelEditJournalEntry } from "../actions";
+import { deleteJournalEntry, editJournalEntry, saveJournalEntry, cancelEditJournalEntry } from "../actions";
 import { makeISODate } from "../utilities";
 
 import "./journal-entry.css";
@@ -11,12 +11,25 @@ export function JournalEntry(props) {
         props.dispatch(deleteJournalEntry(props.id));
     }
 
-    function cancelEditing() {
+    function cancel() {
         props.dispatch(cancelEditJournalEntry());
     }
 
     function editEntry() {
         props.dispatch(editJournalEntry(props.id));
+    }
+
+    function save(e) {
+        e.preventDefault();
+
+        const newValues = { id: props.id };
+        Object.keys(e.target.elements).forEach(key => {
+            const name = e.target.elements[key].name;
+            if (name) newValues[name] = e.target.elements[key].value;
+        });
+
+        cancel();
+        props.dispatch(saveJournalEntry(newValues));
     }
 
     if (props.status !== "editing") {
@@ -30,12 +43,13 @@ export function JournalEntry(props) {
         );
     } else {
         return (
-            <div className="journal-entry">
-                <input type="date" defaultValue={makeISODate(props.date)} />
+            <form onSubmit={save} className="journal-entry">
+                <input type="date" name="date" defaultValue={makeISODate(props.date)} />
                 <span>{props.scope}</span>
-                <input type="text" defaultValue={props.text} />
-                <span onClick={cancelEditing} className="x">x</span>
-            </div>
+                <input type="text" name="text" defaultValue={props.text} />
+                <button type="button" onClick={cancel} className="x">x</button>
+                <input type="submit" value="Save" />
+            </form>
         );
     }
 }
