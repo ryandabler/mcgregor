@@ -11,7 +11,7 @@ export function JournalEntry(props) {
         props.dispatch(deleteJournalEntry(props.id));
     }
 
-    function cancelEditing() {
+    function cancel() {
         props.dispatch(cancelEditJournalEntry());
     }
 
@@ -47,7 +47,7 @@ export function JournalEntry(props) {
                 <input type="date" name="date" defaultValue={makeISODate(props.date)} />
                 <span>{props.scope}</span>
                 <input type="text" name="text" defaultValue={props.text} />
-                <button type="button" onClick={cancelEditing} className="x">x</button>
+                <button type="button" onClick={cancel} className="x">x</button>
                 <input type="submit" value="Save" />
             </form>
         );
