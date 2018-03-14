@@ -4,10 +4,27 @@ export const addNewCrop = values => ({
     values
 });
 
+export const EDIT_CROP = "EDIT_CROP";
+export const editCrop = cropId => ({
+    type: EDIT_CROP,
+    cropId
+});
+
 export const DELETE_CROP = "DELETE_CROP";
 export const deleteCrop = cropId => ({
     type: DELETE_CROP,
     cropId
+});
+
+export const CANCEL_EDIT_CROP = "CANCEL_EDIT_CROP";
+export const cancelEditCrop = cropId => ({
+    type: CANCEL_EDIT_CROP
+});
+
+export const SAVE_CROP = "SAVE_CROP";
+export const saveCrop = values => ({
+    type: SAVE_CROP,
+    values
 });
 
 export const CREATE_JOURNAL_ENTRY = "CREATE_JOURNAL_ENTRY";
