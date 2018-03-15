@@ -73,10 +73,16 @@ const initialState = {
 
 export const gardenReducer = (state=initialState, action) => {
     if (action.type === ADD_NEW_CROP) {
-        const crop = Object.assign({}, action.values, { id: Math.floor(Math.random() * 1000) });
+        const crop = Object.assign({}, action.values, { id: Math.floor(Math.random() * 1000).toString(), status: "viewing" });
         
         return Object.assign({}, state, { 
-            garden: { crops: [ ...state.garden.crops, crop ] } } );
+            garden: {
+                id: state.garden.id,
+                status: state.garden.status,
+                crops: [ ...state.garden.crops, crop ],
+                journal: state.garden.journal
+            } }
+        );
     } else if (action.type === DELETE_CROP) {
         const crops = state.garden.crops.filter(item => item.id !== action.cropId);
 
