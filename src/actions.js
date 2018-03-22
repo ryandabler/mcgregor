@@ -55,3 +55,13 @@ export const CANCEL_EDIT_JOURNAL_ENTRY = "CANCEL_EDIT_JOURNAL_ENTRY";
 export const cancelEditJournalEntry = () => ({
     type: CANCEL_EDIT_JOURNAL_ENTRY,
 });
+
+export const SWITCH_TO_REGISTER_MODE = "SWITCH_TO_REGISTER_MODE";
+export const switchToRegisterMode = () => ({
+    type: SWITCH_TO_REGISTER_MODE,
+});
+
+export const SWITCH_TO_LOGIN_MODE = "SWITCH_TO_LOGIN_MODE";
+export const switchToLoginMode = () => ({
+    type: SWITCH_TO_LOGIN_MODE,
+});

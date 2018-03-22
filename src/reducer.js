@@ -8,10 +8,13 @@ import {
     DELETE_JOURNAL_ENTRY,
     EDIT_JOURNAL_ENTRY,
     SAVE_JOURNAL_ENTRY,
-    CANCEL_EDIT_JOURNAL_ENTRY
+    CANCEL_EDIT_JOURNAL_ENTRY,
+    SWITCH_TO_REGISTER_MODE,
+    SWITCH_TO_LOGIN_MODE
 } from "./actions";
 
 const initialState = {
+    loginRegType: "login",
     email: "rdabler@gmail.com",
     garden: {
         id: "123",
@@ -202,6 +205,10 @@ export const gardenReducer = (state=initialState, action) => {
                 journal
             } }
         );
+    } else if (action.type === SWITCH_TO_REGISTER_MODE) {
+        return Object.assign({}, state, { loginRegType: "register" });
+    } else if (action.type === SWITCH_TO_LOGIN_MODE) {
+        return Object.assign({}, state, { loginRegType: "login" });
     }
     return state;
 }
