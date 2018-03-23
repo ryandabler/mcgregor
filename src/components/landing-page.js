@@ -1,17 +1,25 @@
 import React from "react";
 import { connect } from "react-redux";
 import { PropTypes } from "prop-types";
+import { Redirect } from "react-router-dom";
 
 import LoginRegForm from "./login-reg-form";
-import { switchToRegisterMode, switchToLoginMode } from "../actions";
+import { switchToRegisterMode, switchToLoginMode, login } from "../actions";
 
 import "./landing-page.css";
 
 export function LandingPage(props) {
     function handleSubmission(e) {
         e.preventDefault();
+        const newValues = {};
+
         if (props.login) {
-            console.log("submitted login");
+            Object.keys(e.target.elements).forEach(key => {
+                const name = e.target.elements[key].name;
+                if (name) newValues[name] = e.target.elements[key].value;
+            });
+            const { username, password } = newValues;
+            props.dispatch(login(username, password));
         } else {
             console.log("sjbmitted register");
         }
@@ -28,6 +36,10 @@ export function LandingPage(props) {
     const msg = props.login ? 
         <p>No user account? <span onClick={() => toggleForm()} className="linkify">Register!</span></p>
         : <p>Have an account? <span onClick={() => toggleForm()} className="linkify">Log in!</span></p>
+
+    if (props.authToken) {
+        return <Redirect to="/garden" />;
+    }
 
 	return (
         <div className="landing-page">
@@ -47,12 +59,14 @@ export function LandingPage(props) {
 
 LandingPage.propTypes = {
     login: PropTypes.bool,
+    authToken: PropTypes.string,
     dispatch: PropTypes.func
 }
 
 const mapStateToProps = state => {
     return {
-        login: state.loginRegType === "login" ? true : false
+        login: state.loginRegType === "login" ? true : false,
+        authToken: state.authToken
     }
 }
 
