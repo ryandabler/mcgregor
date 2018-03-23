@@ -97,3 +97,8 @@ export const login = (username, password) => dispatch => {
         })
     );
 }
+
+export const LOGOUT = "LOGOUT";
+export const logout = () => ({
+    type: LOGOUT
+});

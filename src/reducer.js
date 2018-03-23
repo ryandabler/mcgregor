@@ -11,7 +11,8 @@ import {
     CANCEL_EDIT_JOURNAL_ENTRY,
     SWITCH_TO_REGISTER_MODE,
     SWITCH_TO_LOGIN_MODE,
-    SET_AUTH_TOKEN
+    SET_AUTH_TOKEN,
+    LOGOUT
 } from "./actions";
 
 const initialState = {
@@ -213,6 +214,8 @@ export const gardenReducer = (state=initialState, action) => {
         return Object.assign({}, state, { loginRegType: "login" });
     } else if (action.type === SET_AUTH_TOKEN) {
         return Object.assign({}, state, { authToken: action.authToken });
+    } else if (action.type === LOGOUT) {
+        return Object.assign({}, state, { authToken: null });
     }
     return state;
 }
