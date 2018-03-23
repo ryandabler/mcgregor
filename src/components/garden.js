@@ -10,33 +10,40 @@ import { logout } from "../actions";
 
 import "./garden.css";
 
-export function Garden(props) {
-    function logoff() {
-        props.dispatch(logout());
+export class Garden extends React.Component {
+    constructor(props) {
+        super();
+        this.props = props
     }
 
-    const items = props.crops.map(crop =>
-        <Link key={crop.id} className="plain-link" to={`/garden/${crop.id}`}>
-            <GardenPlot info={crop} />
-        </Link>
-    );
-
-    if (props.authToken === null) {
-        return <Redirect to="../" />
+    logoff() {
+        this.props.dispatch(logout());
     }
 
-    return (
-        <div className="garden">
-            <div className="splash-screen">
-                <button onClick={() => logoff()}>Log out</button>
+    render() {
+        if (this.props.authToken === null) {
+            return <Redirect to="../" />
+        }
+
+        const items = this.props.crops.map(crop =>
+            <Link key={crop.id} className="plain-link" to={`/garden/${crop.id}`}>
+                <GardenPlot info={crop} />
+            </Link>
+        );
+
+        return (
+            <div className="garden">
+                <div className="splash-screen">
+                    <button onClick={() => this.logoff()}>Log out</button>
+                </div>
+                <div className="garden-plots">
+                    {items}
+                    <Link className="plain-link" to={"/garden/new"}><GardenPlotNew /></Link>
+                </div>
+                <Journal scope={this.props.id} />
             </div>
-            <div className="garden-plots">
-                {items}
-                <Link className="plain-link" to={"/garden/new"}><GardenPlotNew /></Link>
-            </div>
-            <Journal scope={props.id} />
-        </div>
-    );
+        );
+    }
 }
 
 Garden.propTypes = {
