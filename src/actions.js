@@ -1,3 +1,6 @@
+import { API_BASE_URL } from "./config";
+import { normalizeResponseErrors } from "./utilities";
+
 export const ADD_NEW_CROP = "ADD_NEW_CROP";
 export const addNewCrop = values => ({
     type: ADD_NEW_CROP,
@@ -65,3 +68,33 @@ export const SWITCH_TO_LOGIN_MODE = "SWITCH_TO_LOGIN_MODE";
 export const switchToLoginMode = () => ({
     type: SWITCH_TO_LOGIN_MODE,
 });
+
+export const SET_AUTH_TOKEN = "SET_AUTH_TOKEN";
+export const setAuthToken = (authToken) => ({
+    type: SET_AUTH_TOKEN,
+    authToken
+});
+
+export const login = (username, password) => dispatch => {
+    console.log("here");
+    return (
+        fetch(`${API_BASE_URL}/api/auth/login`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                username,
+                password
+            })
+        })
+        .then(res => normalizeResponseErrors(res))
+        .then(res => res.json())
+        .then(authToken => {
+            dispatch(setAuthToken(authToken.authToken));
+        })
+        .catch(err => {
+            console.log(err);
+        })
+    );
+}
