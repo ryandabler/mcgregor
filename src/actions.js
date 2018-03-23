@@ -76,7 +76,6 @@ export const setAuthToken = (authToken) => ({
 });
 
 export const login = (username, password) => dispatch => {
-    console.log("here");
     return (
         fetch(`${API_BASE_URL}/api/auth/login`, {
             method: "POST",
