@@ -20,8 +20,6 @@ const initialState = {
     loginRegType: "login",
     email: "rdabler@gmail.com",
     garden: {
-        id: "123",
-        status: "viewing",
         crops: [
             {
                 id: "124",
@@ -43,38 +41,38 @@ const initialState = {
                 harvest_days: "30",
                 status: "viewing"
             }
-        ],
-        journal: [
-            {
-                id: "125",
-                date: "2/1/2018",
-                scope: "123",
-                text: "Tilled garden",
-                status: "viewing"
-            },
-            {
-                id: "126",
-                date: "3/1/2018",
-                scope: "124",
-                text: "Planted tomatoes",
-                status: "viewing"
-            },
-            {
-                id: "127",
-                date: "3/11/2018",
-                scope: "124",
-                text: "Tomatoes germinated",
-                status: "viewing"
-            },
-            {
-                id: "145",
-                date: "3/11/2017",
-                scope: "124",
-                text: "Tomatoes germinated",
-                status: "viewing"
-            }
         ]
-    }
+    },
+    journal: [
+        {
+            id: "125",
+            date: "2/1/2018",
+            scope: "123",
+            text: "Tilled garden",
+            status: "viewing"
+        },
+        {
+            id: "126",
+            date: "3/1/2018",
+            scope: "124",
+            text: "Planted tomatoes",
+            status: "viewing"
+        },
+        {
+            id: "127",
+            date: "3/11/2018",
+            scope: "124",
+            text: "Tomatoes germinated",
+            status: "viewing"
+        },
+        {
+            id: "145",
+            date: "3/11/2017",
+            scope: "124",
+            text: "Tomatoes germinated",
+            status: "viewing"
+        }
+    ]
 }
 
 export const gardenReducer = (state=initialState, action) => {
@@ -83,23 +81,17 @@ export const gardenReducer = (state=initialState, action) => {
         
         return Object.assign({}, state, { 
             garden: {
-                id: state.garden.id,
-                status: state.garden.status,
-                crops: [ ...state.garden.crops, crop ],
-                journal: state.garden.journal
-            } }
-        );
+                crops: [ ...state.garden.crops, crop ]
+            }
+        });
     } else if (action.type === DELETE_CROP) {
         const crops = state.garden.crops.filter(item => item.id !== action.cropId);
 
         return Object.assign({}, state, { 
             garden: { 
-                id: state.garden.id,
-                status: state.garden.status,
-                crops,
-                journal: state.garden.journal
-            } }
-        );
+                crops
+            }
+        });
     } else if (action.type === EDIT_CROP) {
         const crops = state.garden.crops.map(item => {
             item.status = item.id === action.cropId ? "editing" : "viewing"
@@ -108,12 +100,9 @@ export const gardenReducer = (state=initialState, action) => {
         
         return Object.assign({}, state, {
             garden: {
-                id: state.garden.id,
-                status: state.garden.status,
-                crops,
-                journal: state.garden.journal
-            } }
-        );
+                crops
+            }
+        });
     } else if (action.type === CANCEL_EDIT_CROP) {
         const crops = state.garden.crops.map(item => {
             item.status = "viewing";
@@ -122,12 +111,9 @@ export const gardenReducer = (state=initialState, action) => {
         
         return Object.assign({}, state, {
             garden: {
-                id: state.garden.id,
-                status: state.garden.status,
-                crops,
-                journal: state.garden.journal
-            } }
-        );
+                crops
+            }
+        });
     } else if (action.type === SAVE_CROP) {
         const crop = state.garden.crops.find(item => item.id === action.values.id);
         const newCrop = Object.assign({}, crop, action.values);
@@ -135,34 +121,21 @@ export const gardenReducer = (state=initialState, action) => {
 
         return Object.assign({}, state, {
             garden: {
-                id: state.garden.id,
-                status: state.garden.status,
                 crops: [...crops, newCrop],
-                journal: state.garden.journal
-            } }
-        );
+            }
+        });
     } else if (action.type === CREATE_JOURNAL_ENTRY) {
         const newJournalEntry = Object.assign({}, action.values, { id: Math.floor(Math.random() * 1000).toString() })
 
         return Object.assign({}, state, { 
-            garden: {
-                id: state.garden.id,
-                status: state.garden.status,
-                crops: state.garden.crops,
-                journal: [ ...state.garden.journal, newJournalEntry ]
-            } }
-        );
+            journal: [ ...state.journal, newJournalEntry ]
+        });
     } else if (action.type === DELETE_JOURNAL_ENTRY) {
         const journal = state.garden.journal.filter(item => item.id !== action.id);
 
         return Object.assign({}, state, {
-            garden: {
-                id: state.garden.id,
-                status: state.garden.status,
-                crops: state.garden.crops,
                 journal
-            } }
-        );
+        });
     } else if (action.type === EDIT_JOURNAL_ENTRY) {
         const journal = state.garden.journal.map(item => 
             item.id === action.id ?
@@ -171,26 +144,16 @@ export const gardenReducer = (state=initialState, action) => {
         );
 
         return Object.assign({}, state, {
-            garden: {
-                id: state.garden.id,
-                status: state.garden.status,
-                crops: state.garden.crops,
                 journal
-            } }
-        );
+        });
     } else if (action.type === SAVE_JOURNAL_ENTRY) {
         const entry = state.garden.journal.find(item => item.id === action.values.id);
         const newEntry = Object.assign({}, entry, action.values);
         const journal = state.garden.journal.filter(item => item.id !== action.values.id);
 
         return Object.assign({}, state, {
-            garden: {
-                id: state.garden.id,
-                status: state.garden.status,
-                crops: state.garden.crops,
                 journal: [...journal, newEntry]
-            } }
-        );
+        });
     } else if (action.type === CANCEL_EDIT_JOURNAL_ENTRY) {
         const journal = state.garden.journal.map(item => ({
             id: item.id,
@@ -201,13 +164,8 @@ export const gardenReducer = (state=initialState, action) => {
         );
         
         return Object.assign({}, state, {
-            garden: {
-                id: state.garden.id,
-                status: state.garden.status,
-                crops: state.garden.crops,
                 journal
-            } }
-        );
+        });
     } else if (action.type === SWITCH_TO_REGISTER_MODE) {
         return Object.assign({}, state, { loginRegType: "register" });
     } else if (action.type === SWITCH_TO_LOGIN_MODE) {
