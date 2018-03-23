@@ -77,8 +77,8 @@ Journal.propTypes = {
 
 const mapStateToProps = (state, props) => {
     const entries = props.filter ? 
-        state.garden.journal.filter(entry => entry.scope === props.filter) :
-        state.garden.journal; 
+        state.journal.filter(entry => entry.scope === props.filter) :
+        state.journal; 
     return {
         entries
     }
