@@ -26,9 +26,7 @@ export class Garden extends React.Component {
         }
 
         const items = this.props.crops.map(crop =>
-            <Link key={crop.id} className="plain-link" to={`/garden/${crop.id}`}>
-                <GardenPlot info={crop} />
-            </Link>
+            <GardenPlot key={crop.id} info={crop} />
         );
 
         return (
