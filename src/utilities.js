@@ -26,3 +26,18 @@ export function makeISODate(dateString) {
     const date = new Date(dateString);
     return date.toISOString().split("T")[0];
 }
+
+export function normalizeResponseErrors(res) {
+    if (!res.ok) {
+        if (
+            res.headers.has("content-type") &&
+            res.headers.get("content-type").startsWith("application/json")
+        ) {
+            return res.json().then(err => Promise.reject(err));
+        } else {
+            return Promise.reject({ code: res.status, message: res.statusText });
+        }
+    } else {
+        return res;
+    }
+}
