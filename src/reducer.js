@@ -131,31 +131,31 @@ export const gardenReducer = (state=initialState, action) => {
             journal: [ ...state.journal, newJournalEntry ]
         });
     } else if (action.type === DELETE_JOURNAL_ENTRY) {
-        const journal = state.garden.journal.filter(item => item.id !== action.id);
+        const journal = state.journal.filter(item => item.id !== action.id);
 
         return Object.assign({}, state, {
                 journal
         });
     } else if (action.type === EDIT_JOURNAL_ENTRY) {
-        const journal = state.garden.journal.map(item => 
+        const journal = state.journal.map(item => 
             item.id === action.id ?
                 { id: item.id, date: item.date, scope: item.scope, text: item.text, status: "editing" } :
                 { id: item.id, date: item.date, scope: item.scope, text: item.text, status: "viewing" }
         );
 
         return Object.assign({}, state, {
-                journal
+            journal
         });
     } else if (action.type === SAVE_JOURNAL_ENTRY) {
-        const entry = state.garden.journal.find(item => item.id === action.values.id);
+        const entry = state.journal.find(item => item.id === action.values.id);
         const newEntry = Object.assign({}, entry, action.values);
-        const journal = state.garden.journal.filter(item => item.id !== action.values.id);
+        const journal = state.journal.filter(item => item.id !== action.values.id);
 
         return Object.assign({}, state, {
                 journal: [...journal, newEntry]
         });
     } else if (action.type === CANCEL_EDIT_JOURNAL_ENTRY) {
-        const journal = state.garden.journal.map(item => ({
+        const journal = state.journal.map(item => ({
             id: item.id,
             date: item.date,
             scope: item.scope,
