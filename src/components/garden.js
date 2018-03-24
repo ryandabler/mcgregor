@@ -86,4 +86,4 @@ const mapStateToProps = state => ({
     requestedUserFromServer: state.requestedUserFromServer
 });
   
-  export default connect(mapStateToProps)(Garden);
+export default connect(mapStateToProps)(Garden);
