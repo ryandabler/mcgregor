@@ -29,7 +29,7 @@ const initialState = {
 
 export const gardenReducer = (state=initialState, action) => {
     if (action.type === ADD_NEW_CROP) {
-        const crop = Object.assign({}, action.values, { id: Math.floor(Math.random() * 1000).toString(), status: "viewing" });
+        const crop = Object.assign({}, action.values, { status: "viewing" });
         
         return Object.assign({}, state, { 
             garden: {
