@@ -12,7 +12,8 @@ import {
     SWITCH_TO_REGISTER_MODE,
     SWITCH_TO_LOGIN_MODE,
     SET_AUTH_TOKEN,
-    LOGOUT
+    LOGOUT,
+    LOAD_USER_DATA
 } from "./actions";
 
 const initialState = {
@@ -174,6 +175,8 @@ export const gardenReducer = (state=initialState, action) => {
         return Object.assign({}, state, { authToken: action.authToken });
     } else if (action.type === LOGOUT) {
         return Object.assign({}, state, { authToken: null });
+    } else if (action.type === LOAD_USER_DATA) {
+        return Object.assign({}, state, action.data);
     }
     return state;
 }

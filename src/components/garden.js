@@ -6,7 +6,8 @@ import PropTypes from "prop-types";
 import GardenPlot from "./garden-plot";
 import GardenPlotNew from "./garden-plot-new";
 import Journal from "./journal";
-import { logout } from "../actions";
+import { logout, loadUserData } from "../actions";
+import { API_BASE_URL } from "../config";
 
 import "./garden.css";
 
@@ -14,6 +15,31 @@ export class Garden extends React.Component {
     constructor(props) {
         super();
         this.props = props
+    }
+
+    componentDidMount() {
+        this.loadGarden();
+    }
+
+    loadGarden() {
+        const headers = new Headers();
+        headers.append("Authorization", `Bearer ${this.props.authToken}`);
+
+        return fetch(`${API_BASE_URL}/api/users`, {
+            method: "GET",
+            headers
+        })
+            .then(res => {
+                if (!res.ok) {
+                    return Promise.reject(res.statusText);
+                }
+                return res.json();
+            })
+            .then(data => this.props.dispatch(loadUserData(data.users))
+            )
+            .catch(err =>
+                console.log("AUTH_ERR", err)
+            );
     }
 
     logoff() {

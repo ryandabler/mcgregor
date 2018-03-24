@@ -102,3 +102,9 @@ export const LOGOUT = "LOGOUT";
 export const logout = () => ({
     type: LOGOUT
 });
+
+export const LOAD_USER_DATA = "LOAD_USER_DATA";
+export const loadUserData = (data) => ({
+    type: LOAD_USER_DATA,
+    data
+});
