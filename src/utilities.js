@@ -49,3 +49,7 @@ export function addTokenToStorage(authToken) {
 export function loadTokenFromStorage() {
     return localStorage.getItem("authToken");
 }
+
+export function removeTokenFromStorage() {
+    localStorage.removeItem("authToken");
+}

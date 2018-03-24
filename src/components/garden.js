@@ -8,6 +8,7 @@ import GardenPlotNew from "./garden-plot-new";
 import Journal from "./journal";
 import { logout, loadUserData } from "../actions";
 import { API_BASE_URL } from "../config";
+import { removeTokenFromStorage } from "../utilities";
 
 import "./garden.css";
 
@@ -42,6 +43,7 @@ export class Garden extends React.Component {
     }
 
     logoff() {
+        removeTokenFromStorage();
         this.props.dispatch(logout());
     }
 
