@@ -11,16 +11,16 @@ import './App.css';
 
 export function App() {
 	return (
-			<Router>
-				<div className="App">
-					<Switch>
-						<Route exact path="/" component={LandingPage} />
-						<Route exact path="/garden" component={Garden} />
-						<Route exact path="/garden/new" component={GardenPlotNewForm} />
-						<Route exact path="/garden/:id" component={GardenPlotDetails} />
-					</Switch>
-				</div>
-			</Router>
+		<Router>
+			<div className="App">
+				<Switch>
+					<Route exact path="/" component={LandingPage} />
+					<Route exact path="/garden" component={Garden} />
+					<Route exact path="/garden/new" component={GardenPlotNewForm} />
+					<Route exact path="/garden/:id" component={GardenPlotDetails} />
+				</Switch>
+			</div>
+		</Router>
 	);
 }
 
