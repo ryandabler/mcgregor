@@ -20,7 +20,7 @@ export const deleteCrop = cropId => ({
 });
 
 export const CANCEL_EDIT_CROP = "CANCEL_EDIT_CROP";
-export const cancelEditCrop = cropId => ({
+export const cancelEditCrop = () => ({
     type: CANCEL_EDIT_CROP
 });
 
