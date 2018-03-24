@@ -35,8 +35,7 @@ export class Garden extends React.Component {
                 }
                 return res.json();
             })
-            .then(data => this.props.dispatch(loadUserData(data.users))
-            )
+            .then(data => this.props.dispatch(loadUserData(data.users)))
             .catch(err =>
                 console.log("AUTH_ERR", err)
             );
