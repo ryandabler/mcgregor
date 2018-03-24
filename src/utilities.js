@@ -45,3 +45,7 @@ export function normalizeResponseErrors(res) {
 export function addTokenToStorage(authToken) {
     localStorage.setItem("authToken", authToken);
 }
+
+export function loadTokenFromStorage() {
+    return localStorage.getItem("authToken");
+}

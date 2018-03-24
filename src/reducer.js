@@ -15,9 +15,10 @@ import {
     LOGOUT,
     LOAD_USER_DATA
 } from "./actions";
+import { loadTokenFromStorage } from "./utilities";
 
 const initialState = {
-    authToken: null,
+    authToken: loadTokenFromStorage(),
     loginRegType: "login",
     requestedUserFromServer: false,
     garden: {
