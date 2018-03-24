@@ -21,59 +21,9 @@ const initialState = {
     loginRegType: "login",
     requestedUserFromServer: false,
     garden: {
-        crops: [
-            {
-                id: "124",
-                name: "Tomato",
-                variety: "Heirloom",
-                plant_date: "3/1/2018",
-                germination_days: "10",
-                harvest_days: "50",
-                planting_depth: "1",
-                row_spacing: "1.5",
-                seed_spacing: "1.6",
-                status: "viewing"
-            },
-            {
-                id: "128",
-                name: "Cucumber",
-                plant_date: "5/1/2018",
-                germination_days: "20",
-                harvest_days: "30",
-                status: "viewing"
-            }
-        ]
-    },
-    journal: [
-        {
-            id: "125",
-            date: "2/1/2018",
-            scope: "123",
-            text: "Tilled garden",
-            status: "viewing"
+        crops: []
         },
-        {
-            id: "126",
-            date: "3/1/2018",
-            scope: "124",
-            text: "Planted tomatoes",
-            status: "viewing"
-        },
-        {
-            id: "127",
-            date: "3/11/2018",
-            scope: "124",
-            text: "Tomatoes germinated",
-            status: "viewing"
-        },
-        {
-            id: "145",
-            date: "3/11/2017",
-            scope: "124",
-            text: "Tomatoes germinated",
-            status: "viewing"
-        }
-    ]
+    journal: []
 }
 
 export const gardenReducer = (state=initialState, action) => {
