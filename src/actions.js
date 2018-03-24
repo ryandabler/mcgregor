@@ -1,5 +1,5 @@
 import { API_BASE_URL } from "./config";
-import { normalizeResponseErrors } from "./utilities";
+import { normalizeResponseErrors, addTokenToStorage } from "./utilities";
 
 export const ADD_NEW_CROP = "ADD_NEW_CROP";
 export const addNewCrop = values => ({
@@ -89,8 +89,9 @@ export const login = (username, password) => dispatch => {
         })
         .then(res => normalizeResponseErrors(res))
         .then(res => res.json())
-        .then(authToken => {
-            dispatch(setAuthToken(authToken.authToken));
+        .then( ({authToken}) => {
+            dispatch(setAuthToken(authToken));
+            addTokenToStorage(authToken);
         })
         .catch(err => {
             console.log(err);
