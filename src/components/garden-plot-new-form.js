@@ -32,6 +32,10 @@ export function GardenPlotNewForm(props) {
                 <input id="newCropName" name="name" type="text" required />
             </div>
             <div className="new-crop-form-row">
+                <label htmlFor="newCropVariety">Variety</label>
+                <input id="newCropVariety" name="variety" type="text" required />
+            </div>
+            <div className="new-crop-form-row">
                 <label htmlFor="newCropPlantDate">Plant date</label>
                 <input id="newCropPlantDate" name="plant_date" type="date" required />
             </div>
