@@ -8,7 +8,7 @@ import "./garden-plot-new-form.css";
 export function GardenPlotNewForm(props) {
     function cancelNewCrop(e) {
         e.preventDefault();
-        props.history.push("../../");
+        props.history.push("./");
     }
 
     function createNewCrop(e) {
@@ -21,7 +21,7 @@ export function GardenPlotNewForm(props) {
         });
 
         props.dispatch(addNewCrop(cropValues));
-        props.history.push("../../");
+        props.history.push("../");
     }
 
     return (
