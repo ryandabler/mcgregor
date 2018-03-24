@@ -19,7 +19,7 @@ import {
 const initialState = {
     authToken: null,
     loginRegType: "login",
-    email: "rdabler@gmail.com",
+    requestedUserFromServer: false,
     garden: {
         crops: [
             {
@@ -176,7 +176,7 @@ export const gardenReducer = (state=initialState, action) => {
     } else if (action.type === LOGOUT) {
         return Object.assign({}, state, { authToken: null });
     } else if (action.type === LOAD_USER_DATA) {
-        return Object.assign({}, state, action.data);
+        return Object.assign({}, state, action.data, { requestedUserFromServer: true });
     }
     return state;
 }

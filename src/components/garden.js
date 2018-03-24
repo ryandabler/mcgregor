@@ -18,7 +18,7 @@ export class Garden extends React.Component {
     }
 
     componentDidMount() {
-        this.loadGarden();
+        if (!this.props.requestedUserFromServer) this.loadGarden();
     }
 
     loadGarden() {
@@ -73,13 +73,15 @@ Garden.propTypes = {
     crops: PropTypes.arrayOf(PropTypes.object),
     id: PropTypes.string,
     authToken: PropTypes.string,
+    requestedUserFromServer: PropTypes.bool,
     dispatch: PropTypes.func
 }
 
 const mapStateToProps = state => ({
     crops: state.garden.crops,
     id: state.garden.id,
-    authToken: state.authToken
+    authToken: state.authToken,
+    requestedUserFromServer: state.requestedUserFromServer
 });
   
   export default connect(mapStateToProps)(Garden);
