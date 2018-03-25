@@ -4,12 +4,22 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
 import { deleteCrop } from "../actions";
+import { API_BASE_URL } from "../config";
+import { normalizeResponseErrors } from "../utilities";
 
 import "./garden-plot.css";
 
 export function GardenPlot(props) {
     function deleteCard() {
-        props.dispatch(deleteCrop(props.info.id));
+        fetch(`${API_BASE_URL}/api/crops/${props.info.id}`, {
+            method: "DELETE",
+            headers: {
+                "Authorization": `Bearer ${props.authToken}`
+            }
+        })
+        .then(res => normalizeResponseErrors(res))
+        .then(() => props.dispatch(deleteCrop(props.info.id)))
+        .catch(err => console.log(err));
     }
 
     return (
@@ -39,4 +49,8 @@ GardenPlot.propTypes = {
     dispatch: PropTypes.func
 }
 
-export default connect()(GardenPlot);
+const mapStateToProps = state => ({
+    authToken: state.authToken
+});
+
+export default connect(mapStateToProps)(GardenPlot);
