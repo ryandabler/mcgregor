@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 
 import { addNewCrop } from "../actions";
 import { API_BASE_URL } from "../config";
-import { normalizeResponseErrors } from "../utilities";
+import { normalizeResponseErrors, extractFormValues } from "../utilities";
 
 import "./garden-plot-new-form.css";
 
@@ -17,11 +17,7 @@ export function GardenPlotNewForm(props) {
     function createNewCrop(e) {
         e.preventDefault();
 
-        const cropValues = {};
-        Object.keys(e.target.elements).forEach(key => {
-            const name = e.target.elements[key].name;
-            if (name) cropValues[name] = e.target.elements[key].value;
-        });
+        const cropValues = extractFormValues(e.target.elements);
         
         fetch(`${API_BASE_URL}/api/crops`, {
             method: "POST",
