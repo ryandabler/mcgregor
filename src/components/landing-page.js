@@ -5,20 +5,17 @@ import { Redirect } from "react-router-dom";
 
 import LoginRegForm from "./login-reg-form";
 import { switchToRegisterMode, switchToLoginMode, login } from "../actions";
+import { extractFormValues } from "../utilities";
 
 import "./landing-page.css";
 
 export function LandingPage(props) {
     function handleSubmission(e) {
         e.preventDefault();
-        const newValues = {};
+        const formValues = extractFormValues(e.target.elements);
 
         if (props.login) {
-            Object.keys(e.target.elements).forEach(key => {
-                const name = e.target.elements[key].name;
-                if (name) newValues[name] = e.target.elements[key].value;
-            });
-            const { username, password } = newValues;
+            const { username, password } = formValues;
             props.dispatch(login(username, password));
         } else {
             console.log("sjbmitted register");
