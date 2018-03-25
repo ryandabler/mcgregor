@@ -31,7 +31,8 @@ export function GardenPlotNewForm(props) {
         .then(res => res.json())
         .then(crop => {
             props.dispatch(addNewCrop(crop));
-        });
+        })
+        .catch(err => console.log(err));
         props.history.push("../");
     }
 
