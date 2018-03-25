@@ -1,9 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+
 import Journal from "./journal.js";
 import { editCrop, cancelEditCrop, saveCrop } from "../actions";
-import { makeISODate } from "../utilities";
+import { makeISODate, extractFormValues, normalizeResponseErrors } from "../utilities";
+import { API_BASE_URL } from "../config";
 
 import "./garden-plot-detail.css";
 
@@ -19,14 +21,21 @@ export function GardenPlotDetails(props) {
     function save(e) {
         e.preventDefault();
 
-        const newValues = { id: props.match.params.id };
-        Object.keys(e.target.elements).forEach(key => {
-            const name = e.target.elements[key].name;
-            if (name) newValues[name] = e.target.elements[key].value;
-        });
-        
+        const newValues = extractFormValues(e.target.elements, { id: props.match.params.id });
+        console.log(newValues);
+        fetch(`${API_BASE_URL}/api/crops/${props.match.params.id}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${props.authToken}`
+            },
+            body: JSON.stringify(newValues)
+        })
+        .then(res => normalizeResponseErrors(res))
+        .then(() => props.dispatch(saveCrop(newValues)))
+        .catch(err => console.log(err));
+
         cancel();
-        props.dispatch(saveCrop(newValues));
     }
 
     if (props.crop.status === "editing") {
@@ -92,6 +101,7 @@ export function GardenPlotDetails(props) {
 GardenPlotDetails.propTypes = {
     crop: PropTypes.object,
     match: PropTypes.object,
+    authToken: PropTypes.string,
     dispatch: PropTypes.func
 }
 
@@ -99,7 +109,8 @@ const mapStateToProps = (state, props) => {
     const crop = state.garden.crops.find(crop => crop.id === props.match.params.id);
     return {
         crop,
-        status: crop.status
+        status: crop.status,
+        authToken: state.authToken
     };
 };
 
