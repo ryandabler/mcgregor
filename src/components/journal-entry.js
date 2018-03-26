@@ -48,10 +48,12 @@ export function JournalEntry(props) {
         cancel();
     }
 
+    const date = new Date(props.date);
+
     if (props.status !== "editing") {
         return (
             <div className="journal-entry">
-                <span onClick={editEntry}>{props.date}</span>
+                <span onClick={editEntry}>{date.toLocaleDateString()}</span>
                 <span onClick={editEntry}>{props.scope}</span>
                 <span onClick={editEntry}>{props.text}</span>
                 <span onClick={deleteEntry} className="x">x</span>
