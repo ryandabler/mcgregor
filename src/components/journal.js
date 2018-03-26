@@ -3,7 +3,14 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import JournalYear from "./journal-year";
 import { createJournalEntry } from "../actions";
-import { getJournalYears, getJournalEntriesByYear, sortJournalByDate } from "../utilities";
+import { API_BASE_URL } from "../config";
+import {
+    getJournalYears,
+    getJournalEntriesByYear,
+    sortJournalByDate,
+    extractFormValues,
+    normalizeResponseErrors
+} from "../utilities";
 
 import "./journal.css";
 
@@ -22,15 +29,22 @@ export function Journal(props) {
     function createNewEntry(e) {
         e.preventDefault();
 
-        const jeValues = { scope: props.scope};
-        Object.keys(e.target.elements).forEach(key => {
-            const name = e.target.elements[key].name;
-            if (name) jeValues[name] = e.target.elements[key].value;
-        });
+        const jeValues = extractFormValues(e.target.elements, { scope: props.scope });
+        
+        fetch(`${API_BASE_URL}/api/journal`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${props.authToken}`
+            },
+            body: JSON.stringify(jeValues)
+        })
+        .then(res => normalizeResponseErrors(res))
+        .then(res => res.json())
+        .then(journal => props.dispatch(createJournalEntry(journal)))
+        .catch(err => console.log(err));
 
         e.target.reset();
-        props.dispatch(createJournalEntry(jeValues));
-
     }
 
     function clearForm(e) {
@@ -72,7 +86,8 @@ Journal.propTypes = {
     entries: PropTypes.array,
     filter: PropTypes.string,
     dispatch: PropTypes.func,
-    scope: PropTypes.string
+    scope: PropTypes.string,
+    authToken: PropTypes.string
 }
 
 const mapStateToProps = (state, props) => {
@@ -80,8 +95,9 @@ const mapStateToProps = (state, props) => {
         state.journal.filter(entry => entry.scope === props.filter) :
         state.journal; 
     return {
-        entries
-    }
+        entries,
+        authToken: state.authToken
+    };
 };
 
 export default connect(mapStateToProps)(Journal);
