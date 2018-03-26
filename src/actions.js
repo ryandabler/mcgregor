@@ -109,3 +109,24 @@ export const loadUserData = (data) => ({
     type: LOAD_USER_DATA,
     data
 });
+
+export const registerUser = (username, password, email) => () => {
+    return (
+        fetch(`${API_BASE_URL}/api/users`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                username,
+                password,
+                email
+            })
+        })
+        .then(res => normalizeResponseErrors(res))
+        .then(res => res.json())
+        .catch(err => {
+            console.log(err);
+        })
+    );
+}

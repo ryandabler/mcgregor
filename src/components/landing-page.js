@@ -4,7 +4,7 @@ import { PropTypes } from "prop-types";
 import { Redirect } from "react-router-dom";
 
 import LoginRegForm from "./login-reg-form";
-import { switchToRegisterMode, switchToLoginMode, login } from "../actions";
+import { switchToRegisterMode, switchToLoginMode, login, registerUser } from "../actions";
 import { extractFormValues } from "../utilities";
 
 import "./landing-page.css";
@@ -18,7 +18,9 @@ export function LandingPage(props) {
             const { username, password } = formValues;
             props.dispatch(login(username, password));
         } else {
-            console.log("sjbmitted register");
+            const { username, password, email } = formValues;
+            props.dispatch(registerUser(username, password, email))
+                .then(() => props.dispatch(login(username, password)));
         }
     }
 
