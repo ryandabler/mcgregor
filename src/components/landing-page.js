@@ -49,8 +49,10 @@ export function LandingPage(props) {
                 <h2>Lorem ipsum</h2>
             </section>
             <section className="splash">
-                <LoginRegForm onSubmit={handleSubmission} />
-                {msg}
+                <div>
+                    <LoginRegForm onSubmit={handleSubmission} />
+                    {msg}
+                </div>
             </section>
         </div>
 	);
