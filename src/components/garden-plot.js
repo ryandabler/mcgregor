@@ -22,6 +22,8 @@ export function GardenPlot(props) {
         .catch(err => console.log(err));
     }
 
+    const date = new Date(props.info.plant_date);
+
     return (
         <div className="garden-plot">
             <span onClick={deleteCard} className="x">x</span>
@@ -29,7 +31,7 @@ export function GardenPlot(props) {
                 <h2>{props.info.name}</h2>
                 <div className="garden-plot-info">
                     <span>Plant date</span>
-                    <span>{props.info.plant_date}</span>
+                    <span>{date.toLocaleDateString()}</span>
                 </div>
                 <div className="garden-plot-info">
                     <span>Germination days</span>
