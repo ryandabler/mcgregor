@@ -27,7 +27,7 @@ export function LoginRegForm(props) {
                 <label htmlFor="conf-password">Confirm Password</label>
                 <input type="password" id="conf-password" name="password" required />
                 <label htmlFor="email">Email</label>
-                <input type="email" id="email" required />
+                <input type="email" id="email" name="email" required />
                 <input type="submit" value="Login" />
             </form>
         );
