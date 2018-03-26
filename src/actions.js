@@ -1,3 +1,6 @@
+import { API_BASE_URL } from "./config";
+import { normalizeResponseErrors, addTokenToStorage } from "./utilities";
+
 export const ADD_NEW_CROP = "ADD_NEW_CROP";
 export const addNewCrop = values => ({
     type: ADD_NEW_CROP,
@@ -17,7 +20,7 @@ export const deleteCrop = cropId => ({
 });
 
 export const CANCEL_EDIT_CROP = "CANCEL_EDIT_CROP";
-export const cancelEditCrop = cropId => ({
+export const cancelEditCrop = () => ({
     type: CANCEL_EDIT_CROP
 });
 
@@ -55,3 +58,75 @@ export const CANCEL_EDIT_JOURNAL_ENTRY = "CANCEL_EDIT_JOURNAL_ENTRY";
 export const cancelEditJournalEntry = () => ({
     type: CANCEL_EDIT_JOURNAL_ENTRY,
 });
+
+export const SWITCH_TO_REGISTER_MODE = "SWITCH_TO_REGISTER_MODE";
+export const switchToRegisterMode = () => ({
+    type: SWITCH_TO_REGISTER_MODE,
+});
+
+export const SWITCH_TO_LOGIN_MODE = "SWITCH_TO_LOGIN_MODE";
+export const switchToLoginMode = () => ({
+    type: SWITCH_TO_LOGIN_MODE,
+});
+
+export const SET_AUTH_TOKEN = "SET_AUTH_TOKEN";
+export const setAuthToken = (authToken) => ({
+    type: SET_AUTH_TOKEN,
+    authToken
+});
+
+export const login = (username, password) => dispatch => {
+    return (
+        fetch(`${API_BASE_URL}/api/auth/login`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                username,
+                password
+            })
+        })
+        .then(res => normalizeResponseErrors(res))
+        .then(res => res.json())
+        .then( ({authToken}) => {
+            dispatch(setAuthToken(authToken));
+            addTokenToStorage(authToken);
+        })
+        .catch(err => {
+            console.log(err);
+        })
+    );
+}
+
+export const LOGOUT = "LOGOUT";
+export const logout = () => ({
+    type: LOGOUT
+});
+
+export const LOAD_USER_DATA = "LOAD_USER_DATA";
+export const loadUserData = (data) => ({
+    type: LOAD_USER_DATA,
+    data
+});
+
+export const registerUser = (username, password, email) => () => {
+    return (
+        fetch(`${API_BASE_URL}/api/users`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                username,
+                password,
+                email
+            })
+        })
+        .then(res => normalizeResponseErrors(res))
+        .then(res => res.json())
+        .catch(err => {
+            console.log(err);
+        })
+    );
+}

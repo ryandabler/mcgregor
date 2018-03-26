@@ -1,27 +1,39 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+
 import { addNewCrop } from "../actions";
+import { API_BASE_URL } from "../config";
+import { normalizeResponseErrors, extractFormValues } from "../utilities";
 
 import "./garden-plot-new-form.css";
 
 export function GardenPlotNewForm(props) {
     function cancelNewCrop(e) {
         e.preventDefault();
-        props.history.push("../../");
+        props.history.push("./");
     }
 
     function createNewCrop(e) {
         e.preventDefault();
 
-        const cropValues = {};
-        Object.keys(e.target.elements).forEach(key => {
-            const name = e.target.elements[key].name;
-            if (name) cropValues[name] = e.target.elements[key].value;
-        });
-
-        props.dispatch(addNewCrop(cropValues));
-        props.history.push("../../");
+        const cropValues = extractFormValues(e.target.elements);
+        
+        fetch(`${API_BASE_URL}/api/crops`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${props.authToken}`
+            },
+            body: JSON.stringify(cropValues)
+        })
+        .then(res => normalizeResponseErrors(res))
+        .then(res => res.json())
+        .then(crop => {
+            props.dispatch(addNewCrop(crop));
+        })
+        .catch(err => console.log(err));
+        props.history.push("../");
     }
 
     return (
@@ -30,6 +42,10 @@ export function GardenPlotNewForm(props) {
             <div className="new-crop-form-row">
                 <label htmlFor="newCropName">Name</label>
                 <input id="newCropName" name="name" type="text" required />
+            </div>
+            <div className="new-crop-form-row">
+                <label htmlFor="newCropVariety">Variety</label>
+                <input id="newCropVariety" name="variety" type="text" required />
             </div>
             <div className="new-crop-form-row">
                 <label htmlFor="newCropPlantDate">Plant date</label>
@@ -63,7 +79,12 @@ export function GardenPlotNewForm(props) {
 
 GardenPlotNewForm.propTypes = {
     history: PropTypes.object,
+    authToken: PropTypes.string,
     dispatch: PropTypes.func
 };
 
-export default connect()(GardenPlotNewForm);
+const mapStateToProps = state => ({
+    authToken: state.authToken
+});
+
+export default connect(mapStateToProps)(GardenPlotNewForm);

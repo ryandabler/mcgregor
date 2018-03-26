@@ -2,13 +2,22 @@ import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { deleteJournalEntry, editJournalEntry, saveJournalEntry, cancelEditJournalEntry } from "../actions";
-import { makeISODate } from "../utilities";
+import { makeISODate, extractFormValues, normalizeResponseErrors } from "../utilities";
+import { API_BASE_URL } from "../config";
 
 import "./journal-entry.css";
 
 export function JournalEntry(props) {
     function deleteEntry() {
-        props.dispatch(deleteJournalEntry(props.id));
+        fetch(`${API_BASE_URL}/api/journal/${props.id}`, {
+            method: "DELETE",
+            headers: {
+                "Authorization": `Bearer ${props.authToken}`
+            }
+        })
+        .then(res => normalizeResponseErrors(res))
+        .then(() => props.dispatch(deleteJournalEntry(props.id)))
+        .catch(err => console.log(err));
     }
 
     function cancel() {
@@ -22,14 +31,21 @@ export function JournalEntry(props) {
     function save(e) {
         e.preventDefault();
 
-        const newValues = { id: props.id };
-        Object.keys(e.target.elements).forEach(key => {
-            const name = e.target.elements[key].name;
-            if (name) newValues[name] = e.target.elements[key].value;
-        });
+        const newValues = extractFormValues(e.target.elements, { id: props.id });
+
+        fetch(`${API_BASE_URL}/api/journal/${props.id}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${props.authToken}`
+            },
+            body: JSON.stringify(newValues)
+        })
+        .then(res => normalizeResponseErrors(res))
+        .then(() => props.dispatch(saveJournalEntry(newValues)))
+        .catch(err => console.log(err));
 
         cancel();
-        props.dispatch(saveJournalEntry(newValues));
     }
 
     if (props.status !== "editing") {
@@ -60,7 +76,12 @@ JournalEntry.propTypes = {
     text: PropTypes.string,
     id: PropTypes.string,
     status: PropTypes.string,
+    authToken: PropTypes.string,
     dispatch: PropTypes.func
 }
 
-export default connect()(JournalEntry);
+const mapStateToProps = state => ({
+    authToken: state.authToken
+});
+
+export default connect(mapStateToProps)(JournalEntry);

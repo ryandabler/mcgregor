@@ -1,6 +1,5 @@
 .garden-plot {
     background-color: #F5F5F5;
-    padding: 20px;
     position: relative;
 }
 
@@ -30,4 +29,9 @@
     width: 25px;
     line-height: 18px;
     cursor: pointer;
+}
+
+.garden-plot .plain-link {
+    display: block;
+    padding: 20px;
 }
