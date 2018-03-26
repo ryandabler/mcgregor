@@ -48,6 +48,7 @@ export function GardenPlot(props) {
 
 GardenPlot.propTypes = {
     info: PropTypes.object,
+    authToken: PropTypes.string,
     dispatch: PropTypes.func
 }
 
