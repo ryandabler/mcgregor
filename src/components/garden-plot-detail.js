@@ -22,7 +22,7 @@ export function GardenPlotDetails(props) {
         e.preventDefault();
 
         const newValues = extractFormValues(e.target.elements, { id: props.match.params.id });
-        console.log(newValues);
+        
         fetch(`${API_BASE_URL}/api/crops/${props.match.params.id}`, {
             method: "PUT",
             headers: {
