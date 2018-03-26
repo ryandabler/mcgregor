@@ -125,7 +125,7 @@ export const gardenReducer = (state=initialState, action) => {
     } else if (action.type === SET_AUTH_TOKEN) {
         return Object.assign({}, state, { authToken: action.authToken });
     } else if (action.type === LOGOUT) {
-        return Object.assign({}, state, { authToken: null });
+        return Object.assign({}, initialState);
     } else if (action.type === LOAD_USER_DATA) {
         return Object.assign({}, state, action.data, { requestedUserFromServer: true });
     }
