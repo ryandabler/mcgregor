@@ -78,7 +78,7 @@ export function Journal(props) {
                 </div>
                 <div className="cmd-btns">
                     <input type="submit" value="Save" />
-                    <button onClick={clearForm} type="button">Clear</button>
+                    <button onClick={clearForm} className="form-btn" type="button">Clear</button>
                 </div>
             </form>
             {groups}

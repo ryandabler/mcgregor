@@ -66,7 +66,7 @@ export function GardenPlotDetails(props) {
                     <input type="number" name="seed_spacing" step=".01"  defaultValue={props.crop.seed_spacing} />
                 </div>
                 <input type="submit" value="Save" />
-                <button type="button" onClick={cancel}>Cancel</button>
+                <button type="button" className="form-btn" onClick={cancel}>Cancel</button>
             </form>
         );
     } else {
