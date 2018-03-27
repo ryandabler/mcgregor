@@ -1,7 +1,19 @@
-.landing-page .splash {
-    min-height: 100vh;
+.landing-page h1 {
+    margin: 0;
+}
+
+.landing-page > :nth-child(2) {
+    background-color: gray;
 }
 
 .landing-page .linkify {
     cursor: pointer;
+}
+
+.landing-page > section {
+    padding: 10px;
+}
+
+.landing-page .mcgregor {
+    font-size: 40px;
 }

@@ -1,5 +1,4 @@
 .garden-plot-detail {
-    width: 40%;
     margin: 0 auto;
     padding: 20px;
     border: 1px solid yellow;
@@ -31,4 +30,10 @@
     display: grid;
     grid-template-columns: 3fr 1fr;
     grid-column-gap: 50px;
+}
+
+@media only screen and (min-width: 640px) {
+    .garden-plot-detail {
+        width: 40%;
+    }
 }

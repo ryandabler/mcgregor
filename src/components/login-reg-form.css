@@ -1,0 +1,44 @@
+.login-reg-form {
+    width: 100%;
+    border: 1px solid black;
+    padding: 10px;
+}
+
+.login-reg-form > * {
+    display: block;
+    width: 100%;
+}
+
+.login-reg-form > h2 {
+    margin-top: 0;
+}
+
+.login-reg-form > p {
+    margin-top: 25px;
+    margin-bottom: 0;
+}
+
+.login-reg-form > input:not(:last-child) {
+    margin-bottom: 16px;
+}
+
+.login-reg-form > input[type=submit] {
+    background-color: white;
+    border: 1px solid black;
+}
+
+.login-reg-form > label {
+    text-align: left;
+}
+
+@media only screen and (min-width: 640px) {
+    .login-reg-form {
+        width: 50%;
+    }
+}
+
+@media only screen and (min-width: 1000px) {
+    .login-reg-form {
+        width: 30%;
+    }
+}

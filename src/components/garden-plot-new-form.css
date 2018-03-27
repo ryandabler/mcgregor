@@ -1,10 +1,26 @@
 .new-crop-form {
     max-width: 500px;
     margin: 0 auto;
+    padding: 10px;
 }
 
 .new-crop-form .new-crop-form-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
+    margin-bottom: 10px;
+}
+
+.new-crop-form label, .new-crop-form input:not([type=submit]) {
+    display: block;
+    text-align: left;
+}
+
+.new-crop-form input:not([type=submit]) {
+    width: 100%;
+}
+
+@media only screen and (min-width: 640px) {
+    .new-crop-form .new-crop-form-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }    
+}
