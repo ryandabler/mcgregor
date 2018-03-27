@@ -29,6 +29,7 @@ export function GardenPlot(props) {
             <span onClick={deleteCard} className="x">x</span>
             <Link className="plain-link" to={`/garden/${props.info.id}`}>
                 <h2>{props.info.name}</h2>
+                <h3 className="variety">{props.info.variety}</h3>
                 <div className="garden-plot-info">
                     <span>Plant date</span>
                     <span>{date.toLocaleDateString()}</span>

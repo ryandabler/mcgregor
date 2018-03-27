@@ -58,7 +58,7 @@ export class Garden extends React.Component {
 
         return (
             <div className="garden">
-                <div className="splash-screen">
+                <div className="splash">
                     <button onClick={() => this.logoff()}>Log out</button>
                 </div>
                 <div className="garden-plots">

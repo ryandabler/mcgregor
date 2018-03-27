@@ -10,6 +10,11 @@ body {
 
 .plain-link {
 	text-decoration: none;
+	color: black;
+}
+
+.plain-link {
+	color: black;
 }
 
 .splash {

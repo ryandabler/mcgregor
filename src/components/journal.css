@@ -52,11 +52,16 @@
 }
 
 @media only screen and (min-width: 640px) {
+    .journal > h3 {
+        width: 65%;
+        margin: auto;
+    }
+
     .journal .new-entry {
         width: 65%;
         display: flex;
         justify-content: space-between;
-        margin: 5px auto 0 auto;
+        margin: 0 auto;
     }
 
     .journal .new-date {
