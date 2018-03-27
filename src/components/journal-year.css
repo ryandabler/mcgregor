@@ -1,5 +1,4 @@
 .journal-year {
-    width: 65%;
     margin: 5px auto 0 auto;
     text-align: left;
 }
@@ -9,6 +8,7 @@
     font-size: 25px;
     cursor: pointer;
     padding: 15px;
+    margin: 0;
 }
 
 .journal-year .journal-entries {
@@ -19,4 +19,10 @@
 
 .journal-year .journal-entries.hidden {
     display: none;
+}
+
+@media only screen and (min-width: 640px) {
+    .journal-year {
+        width: 65%;
+    }
 }

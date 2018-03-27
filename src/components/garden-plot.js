@@ -22,14 +22,17 @@ export function GardenPlot(props) {
         .catch(err => console.log(err));
     }
 
+    const date = new Date(props.info.plant_date);
+
     return (
         <div className="garden-plot">
             <span onClick={deleteCard} className="x">x</span>
             <Link className="plain-link" to={`/garden/${props.info.id}`}>
                 <h2>{props.info.name}</h2>
+                <h3 className="variety">{props.info.variety}</h3>
                 <div className="garden-plot-info">
                     <span>Plant date</span>
-                    <span>{props.info.plant_date}</span>
+                    <span>{date.toLocaleDateString()}</span>
                 </div>
                 <div className="garden-plot-info">
                     <span>Germination days</span>
@@ -46,6 +49,7 @@ export function GardenPlot(props) {
 
 GardenPlot.propTypes = {
     info: PropTypes.object,
+    authToken: PropTypes.string,
     dispatch: PropTypes.func
 }
 

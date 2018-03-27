@@ -38,6 +38,8 @@ export function GardenPlotDetails(props) {
         cancel();
     }
 
+    const plant_date = (new Date(props.crop.plant_date)).toLocaleDateString().split("T")[0];
+    
     if (props.crop.status === "editing") {
         return (
             <form onSubmit={save} className="garden-plot-detail">
@@ -48,7 +50,7 @@ export function GardenPlotDetails(props) {
                 <h3>Grow information</h3>
                 <div className="grid group growing-group">
                     <span>Plant date</span>
-                    <input type="date" name="plant_date" defaultValue={makeISODate(props.crop.plant_date)} />
+                    <input type="date" name="plant_date" defaultValue={makeISODate(plant_date)} />
                     <span>Days to germination</span>
                     <input type="number" name="germination_days" defaultValue={props.crop.germination_days} />
                     <span>Days to harvest</span>
@@ -64,7 +66,7 @@ export function GardenPlotDetails(props) {
                     <input type="number" name="seed_spacing" step=".01"  defaultValue={props.crop.seed_spacing} />
                 </div>
                 <input type="submit" value="Save" />
-                <button type="button" onClick={cancel}>Cancel</button>
+                <button type="button" className="form-btn" onClick={cancel}>Cancel</button>
             </form>
         );
     } else {
@@ -77,7 +79,7 @@ export function GardenPlotDetails(props) {
                 <h3>Grow information</h3>
                 <div className="grid group growing-group">
                     <span>Plant date</span>
-                    <span onClick={editEntry}>{props.crop.plant_date}</span>
+                    <span onClick={editEntry}>{plant_date}</span>
                     <span>Days to germination</span>
                     <span onClick={editEntry}>{props.crop.germination_days}</span>
                     <span>Days to harvest</span>

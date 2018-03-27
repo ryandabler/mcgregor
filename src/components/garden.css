@@ -1,7 +1,11 @@
+:root {
+    --grid-gap: 20px;
+}
+
 .garden-plots {
     background-color: #B3B0B0;
-    padding: 20px;
+    padding: var(--grid-gap);
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-column-gap: 50px;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    grid-gap: var(--grid-gap);
 }

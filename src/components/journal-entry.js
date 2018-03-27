@@ -48,23 +48,25 @@ export function JournalEntry(props) {
         cancel();
     }
 
+    const date = new Date(props.date);
+
     if (props.status !== "editing") {
         return (
             <div className="journal-entry">
-                <span onClick={editEntry}>{props.date}</span>
-                <span onClick={editEntry}>{props.scope}</span>
-                <span onClick={editEntry}>{props.text}</span>
-                <span onClick={deleteEntry} className="x">x</span>
+                <span className="journal-date" onClick={editEntry}>{date.toLocaleDateString()}</span>
+                <span className="journal-scope" onClick={editEntry}>{props.scope}</span>
+                <span className="journal-note" onClick={editEntry}>{props.text}</span>
+                <span className="journal-opts x" onClick={deleteEntry}>x</span>
             </div>
         );
     } else {
         return (
-            <form onSubmit={save} className="journal-entry">
-                <input type="date" name="date" defaultValue={makeISODate(props.date)} />
-                <span>{props.scope}</span>
-                <input type="text" name="text" defaultValue={props.text} />
-                <button type="button" onClick={cancel} className="x">x</button>
-                <input type="submit" value="Save" />
+            <form onSubmit={save} className="journal-entry-edit">
+                <input className="journal-date" type="date" name="date" defaultValue={makeISODate(props.date)} />
+                <span className="journal-scope">{props.scope}</span>
+                <textarea className="journal-note" name="text" defaultValue={props.text} />
+                <button className="journal-cancel x" type="button" onClick={cancel}>Cancel</button>
+                <input className="journal-save" type="submit" value="Save" />
             </form>
         );
     }

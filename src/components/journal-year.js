@@ -14,9 +14,9 @@ export default function JournalYear(props) {
 
     return (
         <div className="journal-year">
-            <div onClick={() => props.toggle(props.year)} data-year={props.year} className="journal-header">
+            <h3 onClick={() => props.toggle(props.year)} data-year={props.year} className="journal-header">
                 {props.year}
-            </div>
+            </h3>
             <div className="journal-entries">
                 {entries}
             </div>

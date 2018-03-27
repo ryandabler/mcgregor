@@ -1,7 +1,24 @@
-.landing-page .splash {
-    min-height: 100vh;
+.landing-page {
+    color: var(--clr-offwhite);
+    font-family: 'Lora', serif;
+}
+
+.landing-page h1 {
+    margin: 0;
 }
 
 .landing-page .linkify {
     cursor: pointer;
+}
+
+.landing-page > section {
+    padding: 10px;
+    background-color: var(--clr-eggplant);
+}
+
+.landing-page .mcgregor {
+    font-size: 40px;
+    background: url(/img/veggie-1280-853.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
 }

@@ -1,8 +1,55 @@
 .journal-entry {
-    display: table-row;
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-areas:
+        "d d s s s s s o"
+        "n n n n n n n n";
+}
+
+.journal-entry:not(:last-of-type) {
+    border-bottom: 1px dashed pink;
 }
 
 .journal-entry > * {
-    display: table-cell;
     padding: 5px;
+}
+
+.journal-entry > .journal-date, .journal-entry-edit > .journal-date {
+    grid-area: d;
+}
+
+.journal-entry > .journal-scope {
+    grid-area: s;
+    text-align: center;
+}
+
+.journal-entry > .journal-opts {
+    grid-area: o;
+    text-align: right;
+}
+
+.journal-entry > .journal-note, .journal-entry-edit > .journal-note {
+    grid-area: n;
+}
+
+.journal-entry-edit {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-areas:
+        "d d d d d d d d"
+        "n n n n n n n n"
+        "n n n n n n n n"
+        "s s s s c c c c";
+}
+
+.journal-entry-edit > .journal-scope { 
+    display: none;
+}
+
+.journal-entry-edit > .journal-save {
+    grid-area: s;
+}
+
+.journal-entry-edit > .journal-cancel {
+    grid-area: c;
 }

@@ -16,12 +16,12 @@ import "./journal.css";
 
 export function Journal(props) {
     function toggleDisplay(year) {
-        const journals = Array.from(document.getElementsByClassName("journal-year"));
+        const journals = Array.from(document.getElementsByClassName("journal-header"));
         journals.forEach(journal => {
-            if (journal.getElementsByClassName("journal-header")[0].getAttribute("data-year") === year.toString()) {
-                journal.getElementsByClassName("journal-entries")[0].classList.toggle("hidden");
+            if (journal.getAttribute("data-year") === year.toString()) {
+                journal.nextElementSibling.classList.toggle("hidden");
             } else {
-                journal.getElementsByClassName("journal-entries")[0].classList.add("hidden");
+                journal.nextElementSibling.classList.add("hidden");
             }
         })
     }
@@ -61,24 +61,28 @@ export function Journal(props) {
                                                          entries={journalByYear[idx]}
                                                          toggle={toggleDisplay} />);
     
+    const today = (new Date()).toISOString().split("T")[0];
     return (
-        <div className="journal">
+        <section className="journal">
+            <h3 onClick={() => toggleDisplay("new")} data-year="new" className="journal-header accordion-indicator">
+                New Note
+            </h3>
             <form onSubmit={createNewEntry} className="new-entry">
                 <div className="new-entry-group new-date">
                     <label htmlFor="new-entry-date">Date</label>
-                    <input id="new-entry-date" name="date" type="date" />
+                    <input id="new-entry-date" name="date" type="date" defaultValue={today} />
                 </div>
                 <div className="new-entry-group new-text">
                     <label htmlFor="new-entry-text">Note</label>
-                    <input id="new-entry-text" name="text" type="text" />
+                    <textarea id="new-entry-text" name="text" />
                 </div>
                 <div className="cmd-btns">
                     <input type="submit" value="Save" />
-                    <button onClick={clearForm} type="button">Clear</button>
+                    <button onClick={clearForm} className="form-btn" type="button">Clear</button>
                 </div>
             </form>
             {groups}
-        </div>
+        </section>
     );
 }
 

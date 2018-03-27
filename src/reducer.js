@@ -77,7 +77,7 @@ export const gardenReducer = (state=initialState, action) => {
             }
         });
     } else if (action.type === CREATE_JOURNAL_ENTRY) {
-        const newJournalEntry = Object.assign({}, action.values, { id: Math.floor(Math.random() * 1000).toString() })
+        const newJournalEntry = Object.assign({}, action.values)
 
         return Object.assign({}, state, { 
             journal: [ ...state.journal, newJournalEntry ]
@@ -127,7 +127,14 @@ export const gardenReducer = (state=initialState, action) => {
     } else if (action.type === LOGOUT) {
         return Object.assign({}, initialState);
     } else if (action.type === LOAD_USER_DATA) {
-        return Object.assign({}, state, action.data, { requestedUserFromServer: true });
+        const crops = action.data.garden.crops.map(crop =>
+            Object.assign({}, crop, { status: "viewing" })
+        );
+
+        return Object.assign({}, state, action.data, {
+            requestedUserFromServer: true,
+            garden: { crops }
+        });
     }
     return state;
 }

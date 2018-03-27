@@ -1,13 +1,39 @@
+:root {
+	--clr-eggplant: #5C5879;
+	--clr-offwhite: whitesmoke;
+}
+
 * {
-  box-sizing: border-box;
+	box-sizing: border-box;
 }
 
 body {
-  margin: 0;
-  padding: 0;
-  font-family: sans-serif;
+	margin: 0;
+	padding: 0;
+	font-family: sans-serif;
 }
 
 .plain-link {
-  text-decoration: none;
+	text-decoration: none;
+	color: black;
+}
+
+.plain-link {
+	color: black;
+}
+
+.splash {
+	min-height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+}
+
+input, textarea, .form-btn {
+	padding: 5px;
+	font-size: 16px;
+}
+
+textarea {
+	resize: vertical;
 }
