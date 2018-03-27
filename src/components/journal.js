@@ -64,7 +64,7 @@ export function Journal(props) {
     const today = (new Date()).toISOString().split("T")[0];
     return (
         <section className="journal">
-            <h2>New Note <span className="accordion-indicator"></span></h2>
+            <h3>New Note <span className="accordion-indicator"></span></h3>
             <form onSubmit={createNewEntry} className="new-entry">
                 <div className="new-entry-group new-date">
                     <label htmlFor="new-entry-date">Date</label>
