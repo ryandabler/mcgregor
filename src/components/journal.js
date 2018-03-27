@@ -72,7 +72,7 @@ export function Journal(props) {
                 </div>
                 <div className="new-entry-group new-text">
                     <label htmlFor="new-entry-text">Note</label>
-                    <input id="new-entry-text" name="text" type="text" />
+                    <textarea id="new-entry-text" name="text" />
                 </div>
                 <div className="cmd-btns">
                     <input type="submit" value="Save" />
