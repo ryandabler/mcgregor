@@ -77,7 +77,7 @@ export const gardenReducer = (state=initialState, action) => {
             }
         });
     } else if (action.type === CREATE_JOURNAL_ENTRY) {
-        const newJournalEntry = Object.assign({}, action.values, { id: Math.floor(Math.random() * 1000).toString() })
+        const newJournalEntry = Object.assign({}, action.values)
 
         return Object.assign({}, state, { 
             journal: [ ...state.journal, newJournalEntry ]
