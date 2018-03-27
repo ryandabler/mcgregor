@@ -61,12 +61,13 @@ export function Journal(props) {
                                                          entries={journalByYear[idx]}
                                                          toggle={toggleDisplay} />);
     
+    const today = (new Date()).toISOString().split("T")[0];
     return (
         <div className="journal">
             <form onSubmit={createNewEntry} className="new-entry">
                 <div className="new-entry-group new-date">
                     <label htmlFor="new-entry-date">Date</label>
-                    <input id="new-entry-date" name="date" type="date" />
+                    <input id="new-entry-date" name="date" type="date" defaultValue={today} />
                 </div>
                 <div className="new-entry-group new-text">
                     <label htmlFor="new-entry-text">Note</label>
