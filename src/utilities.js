@@ -1,3 +1,5 @@
+import { API_BASE_URL } from "./config";
+
 export function getJournalYears(journal) {
     const years = new Set(journal.map(entry => {
         const date = new Date(entry.date);
@@ -61,4 +63,18 @@ export function extractFormValues(elements, initObj = {}) {
         if (name) newValues[name] = elements[key].value;
     });
     return Object.assign(newValues, initObj);
+}
+
+export function queryServer(method, endpoint, authToken, body = undefined) {
+    const headers = { "Content-Type": "application/json" };
+    if (authToken) headers["Authorization"] = `Bearer ${authToken}`;
+
+    return fetch(`${API_BASE_URL}/api/${endpoint}`, {
+        method,
+        headers,
+        body: JSON.stringify(body)
+    })
+    .then(res => normalizeResponseErrors(res))
+    .then(res => res.json())
+    .catch(err => console.log(err));
 }

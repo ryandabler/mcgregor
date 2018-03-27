@@ -3,8 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
 import { addNewCrop } from "../actions";
-import { API_BASE_URL } from "../config";
-import { normalizeResponseErrors, extractFormValues } from "../utilities";
+import { extractFormValues, queryServer } from "../utilities";
 
 import "./garden-plot-new-form.css";
 
@@ -19,20 +18,9 @@ export function GardenPlotNewForm(props) {
 
         const cropValues = extractFormValues(e.target.elements);
         
-        fetch(`${API_BASE_URL}/api/crops`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": `Bearer ${props.authToken}`
-            },
-            body: JSON.stringify(cropValues)
-        })
-        .then(res => normalizeResponseErrors(res))
-        .then(res => res.json())
-        .then(crop => {
-            props.dispatch(addNewCrop(crop));
-        })
-        .catch(err => console.log(err));
+        queryServer("POST", "crops", props.authToken, cropValues)
+            .then(crop => props.dispatch(addNewCrop(crop)));
+        
         props.history.push("../");
     }
 

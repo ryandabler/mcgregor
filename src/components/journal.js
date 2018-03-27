@@ -3,13 +3,12 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import JournalYear from "./journal-year";
 import { createJournalEntry } from "../actions";
-import { API_BASE_URL } from "../config";
 import {
     getJournalYears,
     getJournalEntriesByYear,
     sortJournalByDate,
     extractFormValues,
-    normalizeResponseErrors
+    queryServer
 } from "../utilities";
 
 import "./journal.css";
@@ -28,21 +27,10 @@ export function Journal(props) {
 
     function createNewEntry(e) {
         e.preventDefault();
-
-        const jeValues = extractFormValues(e.target.elements, { scope: props.scope });
         
-        fetch(`${API_BASE_URL}/api/journal`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": `Bearer ${props.authToken}`
-            },
-            body: JSON.stringify(jeValues)
-        })
-        .then(res => normalizeResponseErrors(res))
-        .then(res => res.json())
-        .then(journal => props.dispatch(createJournalEntry(journal)))
-        .catch(err => console.log(err));
+        const jeValues = extractFormValues(e.target.elements, { scope: props.scope });
+        queryServer("POST", "journal", props.authToken, jeValues)
+            .then(journal => props.dispatch(createJournalEntry(journal)));
 
         e.target.reset();
     }
