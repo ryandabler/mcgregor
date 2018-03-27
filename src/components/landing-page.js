@@ -15,7 +15,7 @@ export function LandingPage(props) {
 	return (
         <div className="landing-page">
             <section className="mcgregor splash">
-                <h1>McGregor</h1>
+                <h1>mcGregor</h1>
             </section>
             <section className="splash">
                 <h2>Lorem ipsum</h2>
