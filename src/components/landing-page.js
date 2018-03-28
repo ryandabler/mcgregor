@@ -14,7 +14,7 @@ export function LandingPage(props) {
 
 	return (
         <div className="landing-page">
-            <section className="mcgregor splash">
+            <section className="mcgregor splash flex">
                 <h1>mcGregor</h1>
             </section>
             <section className="splash">
@@ -29,7 +29,7 @@ export function LandingPage(props) {
                     mcGregor can track your experiences to keep your nurtured beds burgeoning.</p>
                 <p>So dig deep and grasp the nettle!</p>
             </section>
-            <section className="splash">
+            <section className="splash flex">
                 <LoginRegForm />
             </section>
         </div>
