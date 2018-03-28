@@ -4,10 +4,11 @@
     grid-template-areas:
         "d d s s s s s o"
         "n n n n n n n n";
+    background-color: var(--clr-gray-green);
 }
 
 .journal-entry:not(:last-of-type) {
-    border-bottom: 1px dashed pink;
+    border-bottom: 1px dashed var(--clr-gray-green);
 }
 
 .journal-entry > * {
