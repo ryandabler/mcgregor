@@ -48,15 +48,15 @@ export function GardenPlotNewForm(props) {
                 <input id="newCropHarvDays" name="harvest_days" type="number" required />
             </div>
             <div className="new-crop-form-row">
-                <label htmlFor="newCropPlantDepth">Planting depth</label>
+                <label htmlFor="newCropPlantDepth">Planting depth (in.)</label>
                 <input id="newCropPlantDepth" name="planting_depth" type="number" step=".01" />
             </div>
             <div className="new-crop-form-row">
-                <label htmlFor="newCropRowSpace">Row spacing</label>
+                <label htmlFor="newCropRowSpace">Row spacing (in.)</label>
                 <input id="newCropRowSpace" name="row_spacing" type="number" step=".01" />
             </div>
             <div className="new-crop-form-row">
-                <label htmlFor="newCropSeedSpace">Seed spacing</label>
+                <label htmlFor="newCropSeedSpace">Seed spacing (in.)</label>
                 <input id="newCropSeedSpace" name="seed_spacing" type="number" step=".01" />
             </div>
             <input type="submit" />
