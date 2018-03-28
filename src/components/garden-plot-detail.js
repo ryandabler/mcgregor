@@ -49,7 +49,7 @@ export function GardenPlotDetails(props) {
                 <h3>Planting information</h3>
                 <div className="grid group planting-group">
                     <span>Planting depth (in.)</span>
-                    <input type="number" name="planting_dept" step=".01" defaultValue={props.crop.planting_depth} />
+                    <input type="number" name="planting_depth" step=".01" defaultValue={props.crop.planting_depth} />
                     <span>Row spacing (in.)</span>
                     <input type="number" name="row_spacing" step=".01"  defaultValue={props.crop.row_spacing} />
                     <span>Seed spacing (in.)</span>
