@@ -47,7 +47,7 @@ export function JournalEntry(props) {
                 <input className="journal-date" type="date" name="date" defaultValue={makeISODate(props.date)} />
                 <span className="journal-scope">{props.scope}</span>
                 <textarea className="journal-note" name="text" defaultValue={props.text} />
-                <button className="journal-cancel x" type="button" onClick={cancel}>Cancel</button>
+                <button className="journal-cancel" type="button" onClick={cancel}>Cancel</button>
                 <input className="journal-save" type="submit" value="Save" />
             </form>
         );
