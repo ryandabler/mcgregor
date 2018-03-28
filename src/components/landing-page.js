@@ -18,7 +18,16 @@ export function LandingPage(props) {
                 <h1>mcGregor</h1>
             </section>
             <section className="splash">
-                <h2>Lorem ipsum</h2>
+                <p>Emulate one of English literature&apos;s most magnetic plots of produce!</p>
+                <p>Welcome to mcGregor, a handy tool for garden oversight.</p>
+                <p>Manage your plantings year to year with note cards designed for recording sowing
+                    specifications and anticipated harvest dates.</p>
+                <p>As you comment on your garden&apos;s unique development, each remark is compiled
+                    into a master journal annually archived for future reference.</p>
+                <p>Whether you call yourself an earthy farmer or fluent horticulturalist,
+                    bear an emerald thumb or are just beginning your agronomical journey,
+                    mcGregor can track your experiences to keep your nurtured beds burgeoning.</p>
+                <p>So dig deep and grasp the nettle!</p>
             </section>
             <section className="splash">
                 <LoginRegForm />
