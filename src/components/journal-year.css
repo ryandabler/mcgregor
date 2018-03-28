@@ -3,16 +3,8 @@
     text-align: left;
 }
 
-.journal-year .journal-header {
-    background-color: var(--clr-gray-green);
-    font-size: 25px;
-    cursor: pointer;
-    padding: 15px;
-    margin: 0;
-}
-
 .journal-year .journal-entries {
-    display: table;
+    display: grid;
     width: 100%;
     border: 1px solid var(--clr-gray-green);
 }
