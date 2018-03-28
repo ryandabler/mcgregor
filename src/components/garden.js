@@ -7,8 +7,7 @@ import GardenPlot from "./garden-plot";
 import GardenPlotNew from "./garden-plot-new";
 import Journal from "./journal";
 import { logout, loadUserData } from "../actions";
-import { API_BASE_URL } from "../config";
-import { removeTokenFromStorage } from "../utilities";
+import { removeTokenFromStorage, queryServer } from "../utilities";
 
 import "./garden.css";
 
@@ -26,20 +25,8 @@ export class Garden extends React.Component {
         const headers = new Headers();
         headers.append("Authorization", `Bearer ${this.props.authToken}`);
 
-        return fetch(`${API_BASE_URL}/api/users`, {
-            method: "GET",
-            headers
-        })
-            .then(res => {
-                if (!res.ok) {
-                    return Promise.reject(res.statusText);
-                }
-                return res.json();
-            })
-            .then(data => this.props.dispatch(loadUserData(data.users)))
-            .catch(err =>
-                console.log("AUTH_ERR", err)
-            );
+        queryServer("GET", "users", this.props.authToken)
+            .then(data => this.props.dispatch(loadUserData(data.users)));
     }
 
     logoff() {

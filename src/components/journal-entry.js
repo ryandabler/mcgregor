@@ -2,22 +2,14 @@ import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { deleteJournalEntry, editJournalEntry, saveJournalEntry, cancelEditJournalEntry } from "../actions";
-import { makeISODate, extractFormValues, normalizeResponseErrors } from "../utilities";
-import { API_BASE_URL } from "../config";
+import { makeISODate, extractFormValues, queryServer } from "../utilities";
 
 import "./journal-entry.css";
 
 export function JournalEntry(props) {
     function deleteEntry() {
-        fetch(`${API_BASE_URL}/api/journal/${props.id}`, {
-            method: "DELETE",
-            headers: {
-                "Authorization": `Bearer ${props.authToken}`
-            }
-        })
-        .then(res => normalizeResponseErrors(res))
-        .then(() => props.dispatch(deleteJournalEntry(props.id)))
-        .catch(err => console.log(err));
+        queryServer("DELETE", `journal/${props.id}`, props.authToken)
+            .then(() => props.dispatch(deleteJournalEntry(props.id)));
     }
 
     function cancel() {
@@ -32,18 +24,8 @@ export function JournalEntry(props) {
         e.preventDefault();
 
         const newValues = extractFormValues(e.target.elements, { id: props.id });
-
-        fetch(`${API_BASE_URL}/api/journal/${props.id}`, {
-            method: "PUT",
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": `Bearer ${props.authToken}`
-            },
-            body: JSON.stringify(newValues)
-        })
-        .then(res => normalizeResponseErrors(res))
-        .then(() => props.dispatch(saveJournalEntry(newValues)))
-        .catch(err => console.log(err));
+        queryServer("PUT", `journal/${props.id}`, props.authToken, newValues)
+            .then(() => props.dispatch(saveJournalEntry(newValues)));
 
         cancel();
     }

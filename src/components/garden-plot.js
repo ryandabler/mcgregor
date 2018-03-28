@@ -4,22 +4,14 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
 import { deleteCrop } from "../actions";
-import { API_BASE_URL } from "../config";
-import { normalizeResponseErrors } from "../utilities";
+import { queryServer } from "../utilities";
 
 import "./garden-plot.css";
 
 export function GardenPlot(props) {
     function deleteCard() {
-        fetch(`${API_BASE_URL}/api/crops/${props.info.id}`, {
-            method: "DELETE",
-            headers: {
-                "Authorization": `Bearer ${props.authToken}`
-            }
-        })
-        .then(res => normalizeResponseErrors(res))
-        .then(() => props.dispatch(deleteCrop(props.info.id)))
-        .catch(err => console.log(err));
+        queryServer("DELETE", `crops/${props.info.id}`, props.authToken)
+            .then(() => props.dispatch(deleteCrop(props.info.id)));
     }
 
     const date = new Date(props.info.plant_date);

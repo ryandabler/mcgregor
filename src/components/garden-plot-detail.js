@@ -4,8 +4,7 @@ import { connect } from "react-redux";
 
 import Journal from "./journal.js";
 import { editCrop, cancelEditCrop, saveCrop } from "../actions";
-import { makeISODate, extractFormValues, normalizeResponseErrors } from "../utilities";
-import { API_BASE_URL } from "../config";
+import { makeISODate, extractFormValues, queryServer } from "../utilities";
 
 import "./garden-plot-detail.css";
 
@@ -23,17 +22,8 @@ export function GardenPlotDetails(props) {
 
         const newValues = extractFormValues(e.target.elements, { id: props.match.params.id });
         
-        fetch(`${API_BASE_URL}/api/crops/${props.match.params.id}`, {
-            method: "PUT",
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": `Bearer ${props.authToken}`
-            },
-            body: JSON.stringify(newValues)
-        })
-        .then(res => normalizeResponseErrors(res))
-        .then(() => props.dispatch(saveCrop(newValues)))
-        .catch(err => console.log(err));
+        queryServer("PUT", `crops/${props.match.params.id}`, props.authToken, newValues)
+            .then(() => props.dispatch(saveCrop(newValues)));
 
         cancel();
     }
