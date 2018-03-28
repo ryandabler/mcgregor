@@ -2,17 +2,28 @@
     display: grid;
     grid-template-columns: repeat(8, 1fr);
     grid-template-areas:
-        "d d s s s s s o"
+        "d d d s s s s o"
         "n n n n n n n n";
     background-color: var(--clr-gray-green);
+    position: relative;
 }
 
 .journal-entry:not(:last-of-type) {
     border-bottom: 1px dashed var(--clr-gray-green);
 }
 
-.journal-entry > * {
+.journal-entry > *:not(.x) {
     padding: 5px;
+}
+
+.journal-entry > .x {
+    display: none;
+    position: absolute;
+    right: 0;
+}
+
+.journal-entry:hover > .x {
+    display: block;
 }
 
 .journal-entry > .journal-date, .journal-entry-edit > .journal-date {
@@ -26,15 +37,10 @@
 
 .journal-entry > .journal-opts {
     grid-area: o;
-    text-align: right;
 }
 
 .journal-entry > .journal-note, .journal-entry-edit > .journal-note {
     grid-area: n;
-}
-
-.journal-entry .x {
-    color: #AC759A;
 }
 
 .journal-entry-edit {
@@ -57,4 +63,10 @@
 
 .journal-entry-edit > .journal-cancel {
     grid-area: c;
+}
+
+@media (hover: none) {
+	.journal-entry .x {
+		display: block;
+	}
 }
