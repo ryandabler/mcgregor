@@ -33,6 +33,10 @@
     grid-area: n;
 }
 
+.journal-entry .x {
+    color: #AC759A;
+}
+
 .journal-entry-edit {
     display: grid;
     grid-template-columns: repeat(8, 1fr);
