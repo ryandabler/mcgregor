@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
 import { deleteCrop } from "../actions";
-import { queryServer } from "../utilities";
+import { queryServer, makeDateFromISOString } from "../utilities";
 
 import "./garden-plot.css";
 
@@ -14,7 +14,7 @@ export function GardenPlot(props) {
             .then(() => props.dispatch(deleteCrop(props.info.id)));
     }
 
-    const date = new Date(props.info.plant_date);
+    const date = makeDateFromISOString(new Date(props.info.plant_date).toISOString());
 
     return (
         <div className="garden-plot">

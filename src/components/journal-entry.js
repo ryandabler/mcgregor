@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { deleteJournalEntry, editJournalEntry, saveJournalEntry, cancelEditJournalEntry } from "../actions";
-import { makeISODate, extractFormValues, queryServer } from "../utilities";
+import { makeISODate, extractFormValues, queryServer, makeDateFromISOString } from "../utilities";
 
 import "./journal-entry.css";
 
@@ -30,8 +30,8 @@ export function JournalEntry(props) {
         cancel();
     }
 
-    const date = new Date(props.date);
-
+    const date = makeDateFromISOString(new Date(props.date).toISOString());
+    
     if (props.status !== "editing") {
         return (
             <div className="journal-entry">
