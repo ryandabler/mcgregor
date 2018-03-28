@@ -1,3 +1,7 @@
+:root {
+    --mcgregor-font-size: 40px;
+}
+
 .landing-page {
     color: var(--clr-offwhite);
     font-family: 'Lora', serif;
@@ -5,6 +9,7 @@
 
 .landing-page h1 {
     margin: 0;
+    font-size: var(--mcgregor-font-size);
 }
 
 .landing-page .linkify {
@@ -16,9 +21,20 @@
     background-color: var(--clr-eggplant);
 }
 
-.landing-page .mcgregor {
-    font-size: 40px;
-    background: url(/img/veggie-1280-853.jpg);
-    background-repeat: no-repeat;
-    background-size: cover;
+@media only screen and (min-width: 425px) {
+    :root {
+        --mcgregor-font-size: 50px;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    :root {
+        --mcgregor-font-size: 90px;
+    }
+}
+
+@media only screen and (min-width: 1440px) {
+    :root {
+        --mcgregor-font-size: 100px;
+    }
 }

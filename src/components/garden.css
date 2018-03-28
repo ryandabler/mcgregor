@@ -2,8 +2,23 @@
     --grid-gap: 20px;
 }
 
-.garden-plots {
-    background-color: #B3B0B0;
+.garden {
+    font-family: "Lora";
+}
+
+.garden .logout {
+    height: 70px;
+    width: 120px;
+    color: #4D4E4C;
+    font-size: 20px;
+    font-family: "Lora";
+    position: absolute;
+    right: 4vw;
+    top: 10vh;
+}
+
+.garden .garden-plots {
+    background-color: var(--clr-gray-green);
     padding: var(--grid-gap);
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));

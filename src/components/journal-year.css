@@ -4,7 +4,7 @@
 }
 
 .journal-year .journal-header {
-    background-color: pink;
+    background-color: var(--clr-gray-green);
     font-size: 25px;
     cursor: pointer;
     padding: 15px;
@@ -14,7 +14,7 @@
 .journal-year .journal-entries {
     display: table;
     width: 100%;
-    border: 1px solid pink;
+    border: 1px solid var(--clr-gray-green);
 }
 
 .journal-year .journal-entries.hidden {
