@@ -9,27 +9,17 @@ import { makeISODate, extractFormValues, queryServer } from "../utilities";
 import "./garden-plot-detail.css";
 
 export function GardenPlotDetails(props) {
-    function editEntry() {
-        props.dispatch(editCrop(props.match.params.id));
-    }
-    
-    function cancel() {
-        props.dispatch(cancelEditCrop());
-    }
-
     function save(e) {
         e.preventDefault();
 
         const newValues = extractFormValues(e.target.elements, { id: props.match.params.id });
-        
-        queryServer("PUT", `crops/${props.match.params.id}`, props.authToken, newValues)
-            .then(() => props.dispatch(saveCrop(newValues)));
+        props.saveChanges(props.match.params.id, props.authToken, newValues);
 
-        cancel();
+        props.cancel();
     }
 
-    const plant_date = (new Date(props.crop.plant_date)).toLocaleDateString().split("T")[0];
-    
+    const plant_date = makeISODate((new Date(props.crop.plant_date)));
+    console.log(plant_date);
     if (props.crop.status === "editing") {
         return (
             <form onSubmit={save} className="garden-plot-detail">
@@ -56,7 +46,7 @@ export function GardenPlotDetails(props) {
                     <input type="number" name="seed_spacing" step=".01"  defaultValue={props.crop.seed_spacing} />
                 </div>
                 <input type="submit" value="Save" />
-                <button type="button" className="form-btn" onClick={cancel}>Cancel</button>
+                <button type="button" className="form-btn" onClick={() => props.cancel()}>Cancel</button>
             </form>
         );
     } else {
@@ -69,20 +59,20 @@ export function GardenPlotDetails(props) {
                 <h3>Grow information</h3>
                 <div className="grid group growing-group">
                     <span>Plant date</span>
-                    <span onClick={editEntry}>{plant_date}</span>
+                    <span onClick={() => props.editEntry(props.match.params.id)}>{plant_date}</span>
                     <span>Days to germination</span>
-                    <span onClick={editEntry}>{props.crop.germination_days}</span>
+                    <span onClick={() => props.editEntry(props.match.params.id)}>{props.crop.germination_days}</span>
                     <span>Days to harvest</span>
-                    <span onClick={editEntry}>{props.crop.harvest_days}</span>
+                    <span onClick={() => props.editEntry(props.match.params.id)}>{props.crop.harvest_days}</span>
                 </div>
                 <h3>Planting information</h3>
                 <div className="grid group planting-group">
                     <span>Planting depth (in.)</span>
-                    <span onClick={editEntry}>{props.crop.planting_depth}</span>
+                    <span onClick={() => props.editEntry(props.match.params.id)}>{props.crop.planting_depth}</span>
                     <span>Row spacing (in.)</span>
-                    <span onClick={editEntry}>{props.crop.row_spacing}</span>
+                    <span onClick={() => props.editEntry(props.match.params.id)}>{props.crop.row_spacing}</span>
                     <span>Seed spacing (in.)</span>
-                    <span onClick={editEntry}>{props.crop.seed_spacing}</span>
+                    <span onClick={() => props.editEntry(props.match.params.id)}>{props.crop.seed_spacing}</span>
                 </div>
                 <h3>Journal</h3>
                 <Journal scope={props.match.params.id} filter={props.match.params.id} />
@@ -94,7 +84,24 @@ GardenPlotDetails.propTypes = {
     crop: PropTypes.object,
     match: PropTypes.object,
     authToken: PropTypes.string,
-    dispatch: PropTypes.func
+    saveChanges: PropTypes.func,
+    editEntry: PropTypes.func,
+    cancel: PropTypes.func
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        saveChanges: (cropId, authToken, cropValues) => {
+            queryServer("PUT", `crops/${cropId}`, authToken, cropValues)
+                .then(() => dispatch(saveCrop(cropValues)))
+        },
+        editEntry: (cropId) => {
+            dispatch(editCrop(cropId));
+        },
+        cancel: () => {
+            dispatch(cancelEditCrop())
+        }
+    }
 }
 
 const mapStateToProps = (state, props) => {
@@ -106,4 +113,4 @@ const mapStateToProps = (state, props) => {
     };
 };
 
-export default connect(mapStateToProps)(GardenPlotDetails);
+export default connect(mapStateToProps, mapDispatchToProps)(GardenPlotDetails);
