@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 
 import Journal from "./journal.js";
 import { editCrop, cancelEditCrop, saveCrop } from "../actions";
-import { makeISODate, extractFormValues, queryServer } from "../utilities";
+import { makeISODate, extractFormValues, queryServer, makeDateFromISOString } from "../utilities";
 
 import "./garden-plot-detail.css";
 
@@ -18,8 +18,7 @@ export function GardenPlotDetails(props) {
         props.cancel();
     }
 
-    const plant_date = makeISODate((new Date(props.crop.plant_date)));
-    console.log(plant_date);
+    const plant_date = makeDateFromISOString(new Date(props.crop.plant_date).toISOString());
     if (props.crop.status === "editing") {
         return (
             <form onSubmit={save} className="garden-plot-detail">
