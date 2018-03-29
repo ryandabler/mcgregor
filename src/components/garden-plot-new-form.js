@@ -17,12 +17,8 @@ export function GardenPlotNewForm(props) {
         e.preventDefault();
 
         const cropValues = extractFormValues(e.target.elements);
-        
-        queryServer("POST", "crops", props.authToken, cropValues)
-            .then(res => res.json())
-            .then(crop => props.dispatch(addNewCrop(crop)));
-        
-        props.history.push("../");
+        props.saveChanges(props.authToken, cropValues);
+        props.history.push("./");
     }
 
     return (
@@ -69,11 +65,20 @@ export function GardenPlotNewForm(props) {
 GardenPlotNewForm.propTypes = {
     history: PropTypes.object,
     authToken: PropTypes.string,
-    dispatch: PropTypes.func
+    dispatch: PropTypes.func,
+    saveChanges: PropTypes.func
 };
 
 const mapStateToProps = state => ({
     authToken: state.authToken
 });
 
-export default connect(mapStateToProps)(GardenPlotNewForm);
+const mapDispatchToProps = dispatch => ({
+    saveChanges: (authToken, cropValues) => {
+        queryServer("POST", "crops", authToken, cropValues)
+            .then(res => res.json())
+            .then(crop => dispatch(addNewCrop(crop)));
+    }
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(GardenPlotNewForm);
