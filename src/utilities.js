@@ -75,6 +75,5 @@ export function queryServer(method, endpoint, authToken, body = undefined) {
         body: JSON.stringify(body)
     })
     .then(res => normalizeResponseErrors(res))
-    .then(res => res.json())
     .catch(err => console.log(err));
 }

@@ -19,6 +19,7 @@ export function GardenPlotNewForm(props) {
         const cropValues = extractFormValues(e.target.elements);
         
         queryServer("POST", "crops", props.authToken, cropValues)
+            .then(res => res.json())
             .then(crop => props.dispatch(addNewCrop(crop)));
         
         props.history.push("../");

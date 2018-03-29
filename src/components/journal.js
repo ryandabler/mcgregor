@@ -30,6 +30,7 @@ export function Journal(props) {
         
         const jeValues = extractFormValues(e.target.elements, { scope: props.scope });
         queryServer("POST", "journal", props.authToken, jeValues)
+            .then(res => res.json())
             .then(journal => props.dispatch(createJournalEntry(journal)));
 
         e.target.reset();

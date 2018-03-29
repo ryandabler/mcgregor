@@ -26,6 +26,7 @@ export class Garden extends React.Component {
         headers.append("Authorization", `Bearer ${this.props.authToken}`);
 
         queryServer("GET", "users", this.props.authToken)
+            .then(res => res.json())
             .then(data => this.props.dispatch(loadUserData(data.users)));
     }
 
