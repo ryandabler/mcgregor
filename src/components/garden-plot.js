@@ -9,16 +9,11 @@ import { queryServer, makeDateFromISOString } from "../utilities";
 import "./garden-plot.css";
 
 export function GardenPlot(props) {
-    function deleteCard() {
-        queryServer("DELETE", `crops/${props.info.id}`, props.authToken)
-            .then(() => props.dispatch(deleteCrop(props.info.id)));
-    }
-
     const date = makeDateFromISOString(new Date(props.info.plant_date).toISOString());
 
     return (
         <div className="garden-plot">
-            <span onClick={deleteCard} className="x">x</span>
+            <span onClick={() => props.deleteCard(props.info.id, props.authToken)} className="x">x</span>
             <Link className="plain-link" to={`/garden/${props.info.id}`}>
                 <h2>{props.info.name}</h2>
                 <h3 className="variety">{props.info.variety}</h3>
@@ -42,11 +37,19 @@ export function GardenPlot(props) {
 GardenPlot.propTypes = {
     info: PropTypes.object,
     authToken: PropTypes.string,
-    dispatch: PropTypes.func
+    dispatch: PropTypes.func,
+    deleteCard: PropTypes.func
 }
 
 const mapStateToProps = state => ({
     authToken: state.authToken
 });
 
-export default connect(mapStateToProps)(GardenPlot);
+const mapDispatchToProps = dispatch => ({
+    deleteCard: (cropId, authToken) => {
+        queryServer("DELETE", `crops/${cropId}`, authToken)
+            .then(() => dispatch(deleteCrop(cropId)));
+    }
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(GardenPlot);
