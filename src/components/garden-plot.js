@@ -24,7 +24,7 @@ export function GardenPlot(props) {
                 <h3 className="variety">{props.info.variety}</h3>
                 <div className="garden-plot-info">
                     <span>Plant date</span>
-                    <span>{date.toLocaleDateString()}</span>
+                    <span>{date}</span>
                 </div>
                 <div className="garden-plot-info">
                     <span>Germination days</span>
