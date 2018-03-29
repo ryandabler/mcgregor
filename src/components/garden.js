@@ -18,21 +18,7 @@ export class Garden extends React.Component {
     }
 
     componentDidMount() {
-        if (!this.props.requestedUserFromServer) this.loadGarden();
-    }
-
-    loadGarden() {
-        const headers = new Headers();
-        headers.append("Authorization", `Bearer ${this.props.authToken}`);
-
-        queryServer("GET", "users", this.props.authToken)
-            .then(res => res.json())
-            .then(data => this.props.dispatch(loadUserData(data.users)));
-    }
-
-    logoff() {
-        removeTokenFromStorage();
-        this.props.dispatch(logout());
+        if (!this.props.requestedUserFromServer) this.props.getUser(this.props.authToken);
     }
 
     render() {
@@ -47,7 +33,7 @@ export class Garden extends React.Component {
         return (
             <div className="garden">
                 <div className="splash-short mcgregor">
-                    <button className="logout" onClick={() => this.logoff()}>log out</button>
+                    <button className="logout" onClick={() => this.props.logoff()}>log out</button>
                 </div>
                 <div className="garden-plots">
                     {items}
@@ -64,7 +50,8 @@ Garden.propTypes = {
     id: PropTypes.string,
     authToken: PropTypes.string,
     requestedUserFromServer: PropTypes.bool,
-    dispatch: PropTypes.func
+    getUser: PropTypes.func,
+    logoff: PropTypes.func
 }
 
 const mapStateToProps = state => ({
@@ -73,5 +60,18 @@ const mapStateToProps = state => ({
     authToken: state.authToken,
     requestedUserFromServer: state.requestedUserFromServer
 });
-  
-export default connect(mapStateToProps)(Garden);
+
+const mapDispatchToProps = dispatch => ({
+    getUser: (authToken) => {
+        queryServer("GET", "users", authToken)
+            .then(res => res.json())
+            .then(data => dispatch(loadUserData(data.users)));
+    },
+    
+    logoff: () => {
+        removeTokenFromStorage();
+        dispatch(logout());
+    }
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Garden);
