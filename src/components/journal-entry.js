@@ -35,7 +35,7 @@ export function JournalEntry(props) {
     if (props.status !== "editing") {
         return (
             <div className="journal-entry">
-                <span className="journal-date" onClick={editEntry}>{date.toLocaleDateString()}</span>
+                <span className="journal-date" onClick={editEntry}>{date}</span>
                 <span className="journal-scope" onClick={editEntry}>{props.scope}</span>
                 <span className="journal-note" onClick={editEntry}>{props.text}</span>
                 <span className="journal-opts x" onClick={deleteEntry}>x</span>

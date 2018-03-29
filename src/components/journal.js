@@ -8,7 +8,8 @@ import {
     getJournalEntriesByYear,
     sortJournalByDate,
     extractFormValues,
-    queryServer
+    queryServer,
+    makeDateFromISOString
 } from "../utilities";
 
 import "./journal.css";
@@ -50,7 +51,7 @@ export function Journal(props) {
                                                          entries={journalByYear[idx]}
                                                          toggle={toggleDisplay} />);
     
-    const today = makeDateFromISOString().toISOString().split("T")[0];
+    const today = new Date(makeDateFromISOString()).toISOString().split("T")[0];
     return (
         <section className="journal">
             <h3 onClick={() => toggleDisplay("new")} data-year="new" className="journal-header accordion-indicator">
