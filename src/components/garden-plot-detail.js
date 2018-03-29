@@ -2,7 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
-import Journal from "./journal.js";
 import { editCrop, cancelEditCrop, saveCrop } from "../actions";
 import { makeISODate, extractFormValues, queryServer, makeDateFromISOString } from "../utilities";
 
