@@ -73,8 +73,6 @@ export function GardenPlotDetails(props) {
                     <span>Seed spacing (in.)</span>
                     <span onClick={() => props.editEntry(props.match.params.id)}>{props.crop.seed_spacing}</span>
                 </div>
-                <h3>Journal</h3>
-                <Journal scope={props.match.params.id} filter={props.match.params.id} />
             </div>
     )}
 }
