@@ -30,9 +30,7 @@ export function Journal(props) {
         e.preventDefault();
         
         const jeValues = extractFormValues(e.target.elements, { scope: props.scope });
-        queryServer("POST", "journal", props.authToken, jeValues)
-            .then(res => res.json())
-            .then(journal => props.dispatch(createJournalEntry(journal)));
+        props.save(props.authToken, jeValues);
 
         e.target.reset();
     }
@@ -81,7 +79,8 @@ Journal.propTypes = {
     filter: PropTypes.string,
     dispatch: PropTypes.func,
     scope: PropTypes.string,
-    authToken: PropTypes.string
+    authToken: PropTypes.string,
+    save: PropTypes.func
 }
 
 const mapStateToProps = (state, props) => {
@@ -94,4 +93,12 @@ const mapStateToProps = (state, props) => {
     };
 };
 
-export default connect(mapStateToProps)(Journal);
+const mapDispatchToProps = dispatch => ({
+    save: (authToken, jeValues) => {
+        queryServer("POST", "journal", authToken, jeValues)
+            .then(res => res.json())
+            .then(journal => dispatch(createJournalEntry(journal)));
+    }
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Journal);
