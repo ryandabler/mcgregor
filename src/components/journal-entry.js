@@ -7,27 +7,12 @@ import { makeISODate, extractFormValues, queryServer, makeDateFromISOString } fr
 import "./journal-entry.css";
 
 export function JournalEntry(props) {
-    function deleteEntry() {
-        queryServer("DELETE", `journal/${props.id}`, props.authToken)
-            .then(() => props.dispatch(deleteJournalEntry(props.id)));
-    }
-
-    function cancel() {
-        props.dispatch(cancelEditJournalEntry());
-    }
-
-    function editEntry() {
-        props.dispatch(editJournalEntry(props.id));
-    }
-
     function save(e) {
         e.preventDefault();
 
         const newValues = extractFormValues(e.target.elements, { id: props.id });
-        queryServer("PUT", `journal/${props.id}`, props.authToken, newValues)
-            .then(() => props.dispatch(saveJournalEntry(newValues)));
-
-        cancel();
+        props.save(props.id, props.authToken, newValues);
+        props.cancel();
     }
 
     const date = makeDateFromISOString(new Date(props.date).toISOString());
@@ -35,10 +20,10 @@ export function JournalEntry(props) {
     if (props.status !== "editing") {
         return (
             <div className="journal-entry">
-                <span className="journal-date" onClick={editEntry}>{date}</span>
-                <span className="journal-scope" onClick={editEntry}>{props.scope}</span>
-                <span className="journal-note" onClick={editEntry}>{props.text}</span>
-                <span className="journal-opts x" onClick={deleteEntry}>x</span>
+                <span className="journal-date" onClick={() => props.edit(props.id)}>{date}</span>
+                <span className="journal-scope" onClick={() => props.edit(props.id)}>{props.scope}</span>
+                <span className="journal-note" onClick={() => props.edit(props.id)}>{props.text}</span>
+                <span className="journal-opts x" onClick={() => props.delete(props.id, props.authToken)}>x</span>
             </div>
         );
     } else {
@@ -47,7 +32,7 @@ export function JournalEntry(props) {
                 <input className="journal-date" type="date" name="date" defaultValue={makeISODate(props.date)} />
                 <span className="journal-scope">{props.scope}</span>
                 <textarea className="journal-note" name="text" defaultValue={props.text} />
-                <button className="journal-cancel" type="button" onClick={cancel}>Cancel</button>
+                <button className="journal-cancel" type="button" onClick={() => props.cancel()}>Cancel</button>
                 <input className="journal-save" type="submit" value="Save" />
             </form>
         );
@@ -61,11 +46,35 @@ JournalEntry.propTypes = {
     id: PropTypes.string,
     status: PropTypes.string,
     authToken: PropTypes.string,
-    dispatch: PropTypes.func
+    dispatch: PropTypes.func,
+    cancel: PropTypes.func,
+    edit: PropTypes.func,
+    delete: PropTypes.func,
+    save: PropTypes.func
 }
 
 const mapStateToProps = state => ({
     authToken: state.authToken
 });
 
-export default connect(mapStateToProps)(JournalEntry);
+const mapDispatchToProps = dispatch => ({
+    delete: (id, authToken) => {
+        queryServer("DELETE", `journal/${id}`, authToken)
+            .then(() => dispatch(deleteJournalEntry(id)));
+    },
+
+    cancel: () => {
+        dispatch(cancelEditJournalEntry());
+    },
+
+    edit: (id) => {
+        dispatch(editJournalEntry(id));
+    },
+
+    save: (id, authToken, newValues) => {
+        queryServer("PUT", `journal/${id}`, authToken, newValues)
+            .then(() => dispatch(saveJournalEntry(newValues)));
+    }
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(JournalEntry);
