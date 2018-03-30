@@ -14,19 +14,18 @@ export function LoginRegForm(props) {
 
         if (props.login) {
             const { username, password } = formValues;
-            props.dispatch(login(username, password));
+            props.loginUser(username, password);
         } else {
             const { username, password, email } = formValues;
-            props.dispatch(registerUser(username, password, email))
-                .then(() => props.dispatch(login(username, password)));
+            props.registerUser(username, password, email);
         }
     }
 
     function toggleForm() {
         if (props.login) {
-            props.dispatch(switchToRegisterMode());
+            props.switchToRegisterMode();
         } else {
-            props.dispatch(switchToLoginMode());
+            props.switchToLoginMode();
         }
     }
 
@@ -67,11 +66,24 @@ export function LoginRegForm(props) {
 
 LoginRegForm.propTypes = {
     login: PropTypes.bool,
-    dispatch: PropTypes.func
+    dispatch: PropTypes.func,
+    loginUser: PropTypes.func,
+    registerUser: PropTypes.func,
+    switchToRegisterMode: PropTypes.func,
+    switchToLoginMode: PropTypes.func
 }
 
 const mapStateToProps = state => ({
-        login: state.loginRegType === "login" ? true : false
+    login: state.loginRegType === "login" ? true : false
 });
 
-export default connect(mapStateToProps)(LoginRegForm);
+const mapDispatchToProps = dispatch => ({
+    loginUser: (username, password) => dispatch(login(username, password)),
+    registerUser: (username, password, email) => 
+        dispatch(registerUser(username, password, email))
+            .then(() => dispatch(login(username, password))),
+    switchToRegisterMode: () => dispatch(switchToRegisterMode()),
+    switchToLoginMode: () => dispatch(switchToLoginMode())
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoginRegForm);
