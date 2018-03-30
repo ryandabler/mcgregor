@@ -70,10 +70,8 @@ LoginRegForm.propTypes = {
     dispatch: PropTypes.func
 }
 
-const mapStateToProps = state => {
-    return {
+const mapStateToProps = state => ({
         login: state.loginRegType === "login" ? true : false
-    };
-}
+});
 
 export default connect(mapStateToProps)(LoginRegForm);
