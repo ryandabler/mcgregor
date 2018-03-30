@@ -60,11 +60,11 @@ export function Journal(props) {
             <form onSubmit={createNewEntry} className="new-entry">
                 <div className="new-entry-group new-date">
                     <label htmlFor="new-entry-date">Date</label>
-                    <input id="new-entry-date" name="date" type="date" defaultValue={today} />
+                    <input id="new-entry-date" name="date" type="date" defaultValue={today} required />
                 </div>
                 <div className="new-entry-group new-text">
                     <label htmlFor="new-entry-text">Note</label>
-                    <textarea id="new-entry-text" name="text" />
+                    <textarea id="new-entry-text" name="text" required />
                 </div>
                 <div className="cmd-btns">
                     <input type="submit" value="Save" />
