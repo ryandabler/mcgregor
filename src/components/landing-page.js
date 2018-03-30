@@ -40,10 +40,8 @@ LandingPage.propTypes = {
     authToken: PropTypes.string
 }
 
-const mapStateToProps = state => {
-    return {
-        authToken: state.authToken
-    }
-}
+const mapStateToProps = state => ({
+    authToken: state.authToken
+});
 
 export default connect(mapStateToProps)(LandingPage);
