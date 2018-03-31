@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { connect } from "react-redux";
 
+import ErrorContainer from "./components/error-container";
 import LandingPage from "./components/landing-page";
 import Garden from "./components/garden";
 import GardenPlotNewForm from "./components/garden-plot-new-form";
@@ -19,6 +20,7 @@ export function App() {
 					<Route exact path="/garden/new" component={GardenPlotNewForm} />
 					<Route exact path="/garden/:id" component={GardenPlotDetails} />
 				</Switch>
+				<ErrorContainer />
 			</div>
 		</Router>
 	);

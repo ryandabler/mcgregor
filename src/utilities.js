@@ -83,3 +83,13 @@ export function makeDateFromISOString(isoDate = (new Date()).toISOString()) {
     const [ year, month, day ] = date.split("-");
     return new Date(year, month - 1, day).toLocaleDateString();
 }
+export function guid() {
+    function s4() {
+        return Math.floor((1 + Math.random()) * 0x10000)
+            .toString(16)
+            .substring(1);
+    }
+
+    return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
+        s4() + '-' + s4() + s4() + s4();
+}

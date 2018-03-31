@@ -130,3 +130,16 @@ export const registerUser = (username, password, email) => () => {
         })
     );
 }
+
+export const ADD_ERROR = "ADD_ERROR";
+export const addError = (code, message) => ({
+    type: ADD_ERROR,
+    code,
+    message
+});
+
+export const DELETE_ERROR = "DELETE_ERROR";
+export const deleteError = (id) => ({
+    type: DELETE_ERROR,
+    id
+});

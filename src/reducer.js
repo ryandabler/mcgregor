@@ -13,9 +13,11 @@ import {
     SWITCH_TO_LOGIN_MODE,
     SET_AUTH_TOKEN,
     LOGOUT,
-    LOAD_USER_DATA
+    LOAD_USER_DATA,
+    DELETE_ERROR,
+    ADD_ERROR
 } from "./actions";
-import { loadTokenFromStorage } from "./utilities";
+import { loadTokenFromStorage, guid } from "./utilities";
 
 const initialState = {
     authToken: loadTokenFromStorage(),
@@ -24,7 +26,8 @@ const initialState = {
     garden: {
         crops: []
         },
-    journal: []
+    journal: [],
+    errors: []
 }
 
 export const gardenReducer = (state=initialState, action) => {
@@ -135,6 +138,16 @@ export const gardenReducer = (state=initialState, action) => {
             requestedUserFromServer: true,
             garden: { crops }
         });
+    } else if (action.type === DELETE_ERROR) {
+        const errors = state.errors.filter(error => error.id !== action.id);
+        return Object.assign({}, state, { errors: [ ...errors ] });
+    } else if (action.type === ADD_ERROR) {
+        const error = {
+            id: guid(),
+            code: action.code,
+            message: action.message
+        };
+        return Object.assign({}, state, { errors: [ ...state.errors, error ] });
     }
     return state;
 }
