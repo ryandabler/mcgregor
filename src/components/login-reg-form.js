@@ -79,10 +79,13 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
     loginUser: (username, password) => dispatch(login(username, password)),
+
     registerUser: (username, password, email) => 
         dispatch(registerUser(username, password, email))
             .then(() => dispatch(login(username, password))),
+
     switchToRegisterMode: () => dispatch(switchToRegisterMode()),
+
     switchToLoginMode: () => dispatch(switchToLoginMode())
 });
 
