@@ -6,7 +6,7 @@ import PropTypes from "prop-types";
 import GardenPlot from "./garden-plot";
 import GardenPlotNew from "./garden-plot-new";
 import Journal from "./journal";
-import { logout, loadUserData } from "../actions";
+import { logout, loadUserData, addError } from "../actions";
 import { removeTokenFromStorage, queryServer } from "../utilities";
 
 import "./garden.css";
@@ -65,7 +65,8 @@ const mapDispatchToProps = dispatch => ({
     getUser: (authToken) => {
         queryServer("GET", "users", authToken)
             .then(res => res.json())
-            .then(data => dispatch(loadUserData(data.users)));
+            .then(data => dispatch(loadUserData(data.users)))
+            .catch(err => dispatch(addError(err.code, err.message)));
     },
     
     logoff: () => {

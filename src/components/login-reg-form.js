@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { PropTypes } from "prop-types";
 
-import { switchToLoginMode, switchToRegisterMode, login, registerUser } from "../actions";
+import { switchToLoginMode, switchToRegisterMode, login, registerUser, addError } from "../actions";
 import { extractFormValues } from "../utilities";
 
 import "./login-reg-form.css";
@@ -78,11 +78,14 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    loginUser: (username, password) => dispatch(login(username, password)),
+    loginUser: (username, password) =>
+        dispatch(login(username, password))
+            .catch(err => dispatch(addError(err.code, err.message))),
 
     registerUser: (username, password, email) => 
         dispatch(registerUser(username, password, email))
-            .then(() => dispatch(login(username, password))),
+            .then(() => dispatch(login(username, password)))
+            .catch(err => dispatch(addError(err.code, err.message))),
 
     switchToRegisterMode: () => dispatch(switchToRegisterMode()),
 

@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { deleteJournalEntry, editJournalEntry, saveJournalEntry, cancelEditJournalEntry } from "../actions";
+import { deleteJournalEntry, editJournalEntry, saveJournalEntry, cancelEditJournalEntry, addError } from "../actions";
 import { makeISODate, extractFormValues, queryServer, makeDateFromISOString } from "../utilities";
 
 import "./journal-entry.css";
@@ -60,7 +60,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
     delete: (id, authToken) => {
         queryServer("DELETE", `journal/${id}`, authToken)
-            .then(() => dispatch(deleteJournalEntry(id)));
+            .then(() => dispatch(deleteJournalEntry(id)))
+            .catch(err => dispatch(addError(err.code, err.message)));
     },
 
     cancel: () => {
@@ -73,7 +74,8 @@ const mapDispatchToProps = dispatch => ({
 
     save: (id, authToken, newValues) => {
         queryServer("PUT", `journal/${id}`, authToken, newValues)
-            .then(() => dispatch(saveJournalEntry(newValues)));
+            .then(() => dispatch(saveJournalEntry(newValues)))
+            .catch(err => dispatch(addError(err.code, err.message)));
     }
 });
 

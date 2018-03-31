@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import JournalYear from "./journal-year";
-import { createJournalEntry } from "../actions";
+import { createJournalEntry, addError } from "../actions";
 import {
     getJournalYears,
     getJournalEntriesByYear,
@@ -97,7 +97,8 @@ const mapDispatchToProps = dispatch => ({
     save: (authToken, jeValues) => {
         queryServer("POST", "journal", authToken, jeValues)
             .then(res => res.json())
-            .then(journal => dispatch(createJournalEntry(journal)));
+            .then(journal => dispatch(createJournalEntry(journal)))
+            .catch(err => dispatch(addError(err.code, err.message)));
     }
 });
 

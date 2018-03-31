@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
-import { deleteCrop } from "../actions";
+import { deleteCrop, addError } from "../actions";
 import { queryServer, makeDateFromISOString } from "../utilities";
 
 import "./garden-plot.css";
@@ -48,7 +48,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
     deleteCard: (cropId, authToken) => {
         queryServer("DELETE", `crops/${cropId}`, authToken)
-            .then(() => dispatch(deleteCrop(cropId)));
+            .then(() => dispatch(deleteCrop(cropId)))
+            .catch(err => dispatch(addError(err.code, err.message)));
     }
 });
 

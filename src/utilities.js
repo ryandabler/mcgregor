@@ -74,8 +74,7 @@ export function queryServer(method, endpoint, authToken, body = undefined) {
         headers,
         body: JSON.stringify(body)
     })
-    .then(res => normalizeResponseErrors(res))
-    .catch(err => console.log(err));
+    .then(res => normalizeResponseErrors(res));
 }
 
 export function makeDateFromISOString(isoDate = (new Date()).toISOString()) {

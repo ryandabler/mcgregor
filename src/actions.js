@@ -93,9 +93,6 @@ export const login = (username, password) => dispatch => {
             dispatch(setAuthToken(authToken));
             addTokenToStorage(authToken);
         })
-        .catch(err => {
-            console.log(err);
-        })
     );
 }
 
@@ -125,9 +122,6 @@ export const registerUser = (username, password, email) => () => {
         })
         .then(res => normalizeResponseErrors(res))
         .then(res => res.json())
-        .catch(err => {
-            console.log(err);
-        })
     );
 }
 

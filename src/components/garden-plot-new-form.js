@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
-import { addNewCrop } from "../actions";
+import { addNewCrop, addError } from "../actions";
 import { extractFormValues, queryServer } from "../utilities";
 
 import "./garden-plot-new-form.css";
@@ -77,7 +77,8 @@ const mapDispatchToProps = dispatch => ({
     saveChanges: (authToken, cropValues) => {
         queryServer("POST", "crops", authToken, cropValues)
             .then(res => res.json())
-            .then(crop => dispatch(addNewCrop(crop)));
+            .then(crop => dispatch(addNewCrop(crop)))
+            .catch(err => dispatch(addError(err.code, err.message)));
     }
 });
 

@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
-import { editCrop, cancelEditCrop, saveCrop } from "../actions";
+import { editCrop, cancelEditCrop, saveCrop, addError } from "../actions";
 import { makeISODate, extractFormValues, queryServer, makeDateFromISOString } from "../utilities";
 
 import "./garden-plot-detail.css";
@@ -90,6 +90,7 @@ const mapDispatchToProps = (dispatch) => {
         saveChanges: (cropId, authToken, cropValues) => {
             queryServer("PUT", `crops/${cropId}`, authToken, cropValues)
                 .then(() => dispatch(saveCrop(cropValues)))
+                .catch(err => dispatch(addError(err.code, err.message)))
         },
         editEntry: (cropId) => {
             dispatch(editCrop(cropId));
