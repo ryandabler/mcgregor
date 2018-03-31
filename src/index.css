@@ -19,6 +19,10 @@ body {
 	color: black;
 }
 
+.linkify {
+    cursor: pointer;
+}
+
 .splash {
 	min-height: 100vh;
 }

@@ -12,10 +12,6 @@
     font-size: var(--mcgregor-font-size);
 }
 
-.landing-page .linkify {
-    cursor: pointer;
-}
-
 .landing-page > section {
     padding: 10px;
     background-color: var(--clr-eggplant);
