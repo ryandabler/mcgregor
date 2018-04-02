@@ -1,0 +1,7 @@
+.garden-plots {
+    background-color: var(--clr-gray-green);
+    padding: var(--grid-gap);
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    grid-gap: var(--grid-gap);
+}

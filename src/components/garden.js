@@ -1,10 +1,11 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Link, Redirect } from "react-router-dom";
+import { Redirect, Route, Switch } from "react-router-dom";
 import PropTypes from "prop-types";
 
-import GardenPlot from "./garden-plot";
-import GardenPlotNew from "./garden-plot-new";
+import GardenPlots from "./garden-plots";
+import GardenPlotNewForm from "./garden-plot-new-form";
+import GardenPlotDetails from "./garden-plot-detail";
 import Journal from "./journal";
 import { logout, loadUserData, addError } from "../actions";
 import { removeTokenFromStorage, queryServer } from "../utilities";
@@ -26,8 +27,8 @@ export class Garden extends React.Component {
             return <Redirect to="../" />
         }
 
-        const items = this.props.crops.map(crop =>
-            <GardenPlot key={crop.id} info={crop} />
+        const GardenPlotsWithProps = props => (
+            <GardenPlots crops={props.crops} />
         );
 
         return (
@@ -35,10 +36,11 @@ export class Garden extends React.Component {
                 <div className="splash-short mcgregor">
                     <button className="logout" onClick={() => this.props.logoff()}>log out</button>
                 </div>
-                <div className="garden-plots">
-                    {items}
-                    <Link className="plain-link" to={"/garden/new"}><GardenPlotNew /></Link>
-                </div>
+                <Switch>
+                    <Route exact path ={this.props.match.path} render={() => <GardenPlotsWithProps crops={this.props.crops} />} />
+                    <Route exact path ={`${this.props.match.path}/new`} component={GardenPlotNewForm} />
+                    <Route exact path ={`${this.props.match.path}/:id`} component={GardenPlotDetails} />
+                </Switch>
                 <Journal scope={this.props.id} />
             </div>
         );
@@ -51,7 +53,8 @@ Garden.propTypes = {
     authToken: PropTypes.string,
     requestedUserFromServer: PropTypes.bool,
     getUser: PropTypes.func,
-    logoff: PropTypes.func
+    logoff: PropTypes.func,
+    match: PropTypes.object
 }
 
 const mapStateToProps = state => ({

@@ -5,8 +5,6 @@ import { connect } from "react-redux";
 import ErrorContainer from "./components/error-container";
 import LandingPage from "./components/landing-page";
 import Garden from "./components/garden";
-import GardenPlotNewForm from "./components/garden-plot-new-form";
-import GardenPlotDetails from "./components/garden-plot-detail";
 
 import './App.css';
 
@@ -16,9 +14,7 @@ export function App() {
 			<div className="App">
 				<Switch>
 					<Route exact path="/" component={LandingPage} />
-					<Route exact path="/garden" component={Garden} />
-					<Route exact path="/garden/new" component={GardenPlotNewForm} />
-					<Route exact path="/garden/:id" component={GardenPlotDetails} />
+					<Route path="/garden" component={Garden} />
 				</Switch>
 				<ErrorContainer />
 			</div>
