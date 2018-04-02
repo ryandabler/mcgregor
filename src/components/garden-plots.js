@@ -23,5 +23,3 @@ export default function GardenPlots(props) {
 GardenPlots.propTypes = {
     crops: PropTypes.arrayOf(PropTypes.object),
 }
-
-// export default connect()(GardenPlots);
