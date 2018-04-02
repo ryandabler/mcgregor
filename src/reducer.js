@@ -128,7 +128,7 @@ export const gardenReducer = (state=initialState, action) => {
     } else if (action.type === SET_AUTH_TOKEN) {
         return Object.assign({}, state, { authToken: action.authToken });
     } else if (action.type === LOGOUT) {
-        return Object.assign({}, initialState);
+        return Object.assign({}, initialState, { authToken: null });
     } else if (action.type === LOAD_USER_DATA) {
         const crops = action.data.garden.crops.map(crop =>
             Object.assign({}, crop, { status: "viewing" })
