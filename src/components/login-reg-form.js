@@ -50,7 +50,7 @@ export function LoginRegForm(props) {
     } else {
         return (
             <form onSubmit={handleSubmission} className="login-reg-form">
-                <h2>Login</h2>
+                <h2>Register</h2>
                 <label htmlFor="username">Username</label>
                 <input type="text" id="username" name="username" required />
                 <label htmlFor="password">Password</label>
@@ -59,7 +59,7 @@ export function LoginRegForm(props) {
                 <input type="password" id="confPassword" name="confPassword" required />
                 <label htmlFor="email">Email</label>
                 <input type="email" id="email" name="email" required />
-                <input type="submit" value="Login" />
+                <input type="submit" value="Register" />
                 {msg}
             </form>
         );
