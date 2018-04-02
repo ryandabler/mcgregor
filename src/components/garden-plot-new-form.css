@@ -23,3 +23,10 @@
 .new-crop-form input:not([type=submit]) {
     width: 100%;
 }
+
+@media only screen and (min-width: 540px) {
+    .new-crop-form {
+        margin-right: auto;
+        margin-left: auto;
+    }
+}
