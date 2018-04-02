@@ -14,7 +14,12 @@
     text-align: left;
 }
 
+.new-crop-form .new-crop-form-row:last-child {
+    margin-bottom: 0;
+    display: flex;
+    justify-content: space-evenly;
+}
+
 .new-crop-form input:not([type=submit]) {
     width: 100%;
 }
-

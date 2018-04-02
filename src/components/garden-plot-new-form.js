@@ -56,8 +56,10 @@ export function GardenPlotNewForm(props) {
                 <label htmlFor="newCropSeedSpace">Seed spacing (in.)</label>
                 <input id="newCropSeedSpace" name="seed_spacing" type="number" step=".01" />
             </div>
-            <input type="submit" />
-            <button className="form-btn" onClick={cancelNewCrop}>Cancel</button>
+            <div className="new-crop-form-row">
+                <input type="submit" />
+                <button className="form-btn" onClick={cancelNewCrop}>Cancel</button>
+            </div>
         </form>
     );
 }
