@@ -16,8 +16,10 @@ export function LoginRegForm(props) {
             const { username, password } = formValues;
             props.loginUser(username, password);
         } else {
-            const { username, password, email } = formValues;
-            props.registerUser(username, password, email);
+            const { username, password, confPassword, email } = formValues;
+            if (props.validatePasswords(password, confPassword)) {
+                props.registerUser(username, password, email);
+            }
         }
     }
 
@@ -53,8 +55,8 @@ export function LoginRegForm(props) {
                 <input type="text" id="username" name="username" required />
                 <label htmlFor="password">Password</label>
                 <input type="password" id="password" name="password" required />
-                <label htmlFor="conf-password">Confirm Password</label>
-                <input type="password" id="conf-password" name="password" required />
+                <label htmlFor="confPassword">Confirm Password</label>
+                <input type="password" id="confPassword" name="confPassword" required />
                 <label htmlFor="email">Email</label>
                 <input type="email" id="email" name="email" required />
                 <input type="submit" value="Login" />
@@ -70,7 +72,8 @@ LoginRegForm.propTypes = {
     loginUser: PropTypes.func,
     registerUser: PropTypes.func,
     switchToRegisterMode: PropTypes.func,
-    switchToLoginMode: PropTypes.func
+    switchToLoginMode: PropTypes.func,
+    validatePasswords: PropTypes.func
 }
 
 const mapStateToProps = state => ({
@@ -89,7 +92,16 @@ const mapDispatchToProps = dispatch => ({
 
     switchToRegisterMode: () => dispatch(switchToRegisterMode()),
 
-    switchToLoginMode: () => dispatch(switchToLoginMode())
+    switchToLoginMode: () => dispatch(switchToLoginMode()),
+
+    validatePasswords: (pw1, pw2) => {
+        if (pw1 !== pw2) {
+            dispatch(addError("401", "The passwords do not match"));
+            return false;
+        } else {
+            return true;
+        }
+    }
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginRegForm);
