@@ -1,7 +1,8 @@
 .new-crop-form {
     max-width: 500px;
-    margin: 0 auto;
+    margin: 20px;
     padding: 10px;
+    background-color: var(--clr-offwhite);
 }
 
 .new-crop-form .new-crop-form-row {
@@ -17,10 +18,3 @@
     width: 100%;
 }
 
-@media only screen and (min-width: 640px) {
-    .new-crop-form .new-crop-form-row {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }    
-}
