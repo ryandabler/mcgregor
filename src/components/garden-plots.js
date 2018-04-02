@@ -1,5 +1,4 @@
 import React from "react";
-import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
@@ -8,7 +7,7 @@ import GardenPlotNew from "./garden-plot-new";
 
 import "./garden-plots.css";
 
-export function GardenPlots(props) {
+export default function GardenPlots(props) {
     const items = props.crops.map(crop =>
         <GardenPlot key={crop.id} info={crop} />
     );
@@ -25,4 +24,4 @@ GardenPlots.propTypes = {
     crops: PropTypes.arrayOf(PropTypes.object),
 }
 
-export default connect()(GardenPlots);
+// export default connect()(GardenPlots);
