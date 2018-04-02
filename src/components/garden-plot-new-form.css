@@ -24,6 +24,10 @@
     width: 100%;
 }
 
+.new-crop-form .buttonize {
+    flex: 0 0 30%;
+}
+
 @media only screen and (min-width: 540px) {
     .new-crop-form {
         margin-right: auto;
