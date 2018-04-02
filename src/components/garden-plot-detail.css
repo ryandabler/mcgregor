@@ -1,8 +1,7 @@
 .garden-plot-detail {
     margin: 0 auto;
     padding: 20px;
-    border: 1px solid yellow;
-    background-color: yellow;
+    background-color: var(--clr-offwhite);
 }
 
 .garden-plot-detail .variety {
