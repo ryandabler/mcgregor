@@ -1,5 +1,5 @@
 .garden-plot {
-    background-color: #F5F5F5;
+    background-color: var(--clr-offwhite);
     position: relative;
 }
 
