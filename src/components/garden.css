@@ -4,6 +4,7 @@
 
 .garden {
     font-family: "Lora";
+    background-color: var(--clr-gray-green);
 }
 
 .garden .logout {
