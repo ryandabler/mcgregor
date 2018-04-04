@@ -2,6 +2,7 @@
     --grid-gap: 20px;
     --header-height: 50px;
     --welcome-font-size: 53px;
+    --info-overlay-content-width: 90vw;
 }
 
 .garden {
@@ -59,15 +60,30 @@
 }
 
 .garden .info-overlay .content {
-    height: 90vh;
-    width: 90vw;
+    padding: 20px;
+    width: var(--info-overlay-content-width);
     background-color: var(--clr-offwhite);
     position: relative;
+}
+
+.garden .info-overlay .content h2 {
+    margin: 0;
+}
+
+.garden .info-overlay .content p:last-child {
+    margin-bottom: 0;
 }
 
 @media only screen and (min-width: 768px) {
     :root {
         --welcome-font-size: 65px;
+        --info-overlay-content-width: 70vw;
+    }
+}
+
+@media only screen and (min-width: 1024px) {
+    :root {
+        --info-overlay-content-width: 50vw;
     }
 }
 
