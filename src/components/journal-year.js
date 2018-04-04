@@ -17,7 +17,7 @@ export default function JournalYear(props) {
             <h3 onClick={() => props.toggle(props.year)} data-year={props.year} className="journal-header">
                 {props.year}
             </h3>
-            <div className="journal-entries">
+            <div className="journal-entries hidden">
                 {entries}
             </div>
         </div>
