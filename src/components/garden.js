@@ -33,9 +33,12 @@ export class Garden extends React.Component {
 
         return (
             <div className="garden">
-                <div className="splash-short mcgregor">
+                <header>
+                    <span className="logo">mcGregor</span>
                     <button className="logout" onClick={() => this.props.logoff()}>log out</button>
-                </div>
+                </header>
+                <section className="splash-short mcgregor">
+                </section>
                 <Switch>
                     <Route exact path ={this.props.match.path} render={() => <GardenPlotsWithProps crops={this.props.crops} />} />
                     <Route exact path ={`${this.props.match.path}/new`} component={GardenPlotNewForm} />
