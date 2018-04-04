@@ -19,6 +19,6 @@ describe("<GardenPlots />", () => {
         }
 
     const wrapper = shallow(<GardenPlots crops={[crop]} />);
-        expect(wrapper.find("div.garden-plots")).toHaveLength(1);
+        expect(wrapper.find("section.garden-plots")).toHaveLength(1);
     });
 });
