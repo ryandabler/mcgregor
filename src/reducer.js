@@ -15,7 +15,9 @@ import {
     LOGOUT,
     LOAD_USER_DATA,
     DELETE_ERROR,
-    ADD_ERROR
+    ADD_ERROR,
+    SHOW_INFO,
+    HIDE_INFO
 } from "./actions";
 import { loadTokenFromStorage, guid } from "./utilities";
 
@@ -23,6 +25,7 @@ const initialState = {
     authToken: loadTokenFromStorage(),
     loginRegType: "login",
     requestedUserFromServer: false,
+    showInformation: false,
     garden: {
         crops: []
         },
@@ -148,6 +151,10 @@ export const gardenReducer = (state=initialState, action) => {
             message: action.message
         };
         return Object.assign({}, state, { errors: [ ...state.errors, error ] });
+    } else if (action.type === SHOW_INFO) {
+        return Object.assign({}, state, { showInformation: true });
+    } else if (action.type === HIDE_INFO) {
+        return Object.assign({}, state, { showInformation: false });
     }
     return state;
 }

@@ -7,7 +7,7 @@ import GardenPlots from "./garden-plots";
 import GardenPlotNewForm from "./garden-plot-new-form";
 import GardenPlotDetails from "./garden-plot-detail";
 import Journal from "./journal";
-import { logout, loadUserData, addError } from "../actions";
+import { logout, loadUserData, addError, showInfo, hideInfo } from "../actions";
 import { removeTokenFromStorage, queryServer } from "../utilities";
 
 import "./garden.css";
@@ -31,11 +31,37 @@ export class Garden extends React.Component {
             <GardenPlots crops={props.crops} />
         );
 
+        const information = (
+            <div className={this.props.showInformation ? "info-overlay" : "hidden"}>
+                <div className="content">
+                    <div className="close linkify" onClick={() => this.props.hideInfo()}>x</div>
+                    <h2>Information</h2>
+                    <p>
+                        Click &quot;Add New Crop&quot; tile to populate your plot with this season&apos;s crops.
+                    </p>
+                    
+                    <p>
+                        Fill in the specifics for each varietal with information from your seed packet.
+                    </p>
+
+                    <p>
+                        As your garden develops, record important information in the master journal
+                        located at the bottom of the screen.
+                    </p>
+
+                    <p>
+                        These notes will be saved year to year for handy reference and comparison.
+                    </p>
+                </div>
+            </div>
+        );
+
         return (
             <div className="garden">
                 <header>
                     <span className="logo">mcGregor</span>
-                    <button className="logout" onClick={() => this.props.logoff()}>log out</button>
+                    <span className="information linkify" onClick={() => this.props.showInfo()}>information</span>
+                    <button className="logout linkify" onClick={() => this.props.logoff()}>log out</button>
                 </header>
                 <section className="splash-short mcgregor">
                     <h1>welcome, {this.props.username}</h1>
@@ -46,6 +72,7 @@ export class Garden extends React.Component {
                     <Route exact path ={`${this.props.match.path}/:id`} component={GardenPlotDetails} />
                 </Switch>
                 <Journal scope={this.props.id} />
+                {information}
             </div>
         );
     }
@@ -57,8 +84,11 @@ Garden.propTypes = {
     authToken: PropTypes.string,
     username: PropTypes.string,
     requestedUserFromServer: PropTypes.bool,
+    showInformation: PropTypes.bool,
     getUser: PropTypes.func,
     logoff: PropTypes.func,
+    showInfo: PropTypes.func,
+    hideInfo: PropTypes.func,
     match: PropTypes.object
 }
 
@@ -67,7 +97,8 @@ const mapStateToProps = state => ({
     id: state.garden.id,
     authToken: state.authToken,
     username: state.username,
-    requestedUserFromServer: state.requestedUserFromServer
+    requestedUserFromServer: state.requestedUserFromServer,
+    showInformation: state.showInformation
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -81,6 +112,14 @@ const mapDispatchToProps = dispatch => ({
     logoff: () => {
         removeTokenFromStorage();
         dispatch(logout());
+    },
+
+    showInfo: () => {
+        dispatch(showInfo())
+    },
+
+    hideInfo: () => {
+        dispatch(hideInfo())
     }
 });
 

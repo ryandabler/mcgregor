@@ -137,3 +137,13 @@ export const deleteError = (id) => ({
     type: DELETE_ERROR,
     id
 });
+
+export const SHOW_INFO = "SHOW_INFO";
+export const showInfo = () => ({
+    type: SHOW_INFO
+});
+
+export const HIDE_INFO = "HIDE_INFO";
+export const hideInfo = () => ({
+    type: HIDE_INFO
+});
