@@ -1,7 +1,8 @@
 :root {
 	--clr-eggplant: #5C5879;
 	--clr-offwhite: whitesmoke;
-	--clr-gray-green: #A6AB9B;
+    --clr-gray-green: #A6AB9B;
+    --clr-gray-green-opaque: #A6AB9BC0;
 }
 
 * {
@@ -80,6 +81,10 @@ textarea {
     width: 25px;
     line-height: 18px;
     cursor: pointer;
+}
+
+.hidden {
+    display: none;
 }
 
 .close {
