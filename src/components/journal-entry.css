@@ -4,7 +4,7 @@
     grid-template-areas:
         "d d d s s s s o"
         "n n n n n n n n";
-    background-color: var(--clr-gray-green);
+    background-color: var(--clr-offwhite);
     position: relative;
 }
 
