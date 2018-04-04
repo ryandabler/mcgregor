@@ -13,9 +13,3 @@
 .error-msg:not(:last-of-type) {
     margin-bottom: 10px;
 }
-
-.error-msg .close {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-}
