@@ -49,4 +49,24 @@ describe("<Garden />", () => {
         
         expect(getUser).toHaveBeenCalled();
     });
+
+    it("Should dispatch action on showing info", () => {
+        const showInfo = jest.fn();
+        const getUser = jest.fn();
+
+        const wrapper = shallow(<Garden crops={[crop]} getUser={getUser} showInfo={showInfo} match={match} />);
+        wrapper.find("span.information").simulate("click");
+        
+        expect(showInfo).toHaveBeenCalled();
+    });
+
+    it("Should dispatch action on closing showing info box", () => {
+        const hideInfo = jest.fn();
+        const getUser = jest.fn();
+
+        const wrapper = shallow(<Garden crops={[crop]} getUser={getUser} showInformation={true} match={match} hideInfo={hideInfo} />);
+        wrapper.find(".info-overlay .close").simulate("click");
+        
+        expect(hideInfo).toHaveBeenCalled();
+    });
 });

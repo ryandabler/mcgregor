@@ -10,6 +10,7 @@ describe("Reducer", () => {
             authToken: loadTokenFromStorage(),
             loginRegType: "login",
             requestedUserFromServer: false,
+            showInformation: false,
             garden: {
                 crops: []
                 },
@@ -252,6 +253,22 @@ describe("Reducer", () => {
         const state = gardenReducer(initialState, actions.addError(error.code, error.message));
         error.id = state.errors[0].id;
         initialState.errors.push(error);
+        
+        expect(state).toEqual(initialState);
+    });
+
+    it("Should handle SHOW_INFO", () => {
+        const state = gardenReducer(initialState, actions.showInfo());
+        initialState.showInformation = true;
+        
+        expect(state).toEqual(initialState);
+    });
+
+    it("Should handle HIDE_INFO", () => {
+        initialState.showInformation = true;
+
+        const state = gardenReducer(initialState, actions.hideInfo());
+        initialState.showInformation = false;
         
         expect(state).toEqual(initialState);
     });

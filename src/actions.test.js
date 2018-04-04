@@ -200,4 +200,16 @@ describe("Actions", () => {
         expect(action.type).toEqual(actions.DELETE_ERROR);
         expect(action.id).toEqual(id);
     });
+
+    it("Should return showInfo()", () => {
+        const action = actions.showInfo();
+
+        expect(action.type).toEqual(actions.SHOW_INFO);
+    });
+
+    it("Should return hideInfo()", () => {
+        const action = actions.hideInfo();
+
+        expect(action.type).toEqual(actions.HIDE_INFO);
+    });
 });
