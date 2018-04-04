@@ -17,11 +17,10 @@ import "./journal.css";
 export function Journal(props) {
     function toggleDisplay(year) {
         const journals = Array.from(document.getElementsByClassName("journal-header"));
-        journals.forEach(journal => {
-            if (journal.getAttribute("data-year") === year.toString()) {
-                journal.nextElementSibling.classList.toggle("hidden");
-            }
-        })
+        const journal = journals.find(journal =>
+            journal.getAttribute("data-year") === year.toString()
+        );
+        journal.nextElementSibling.classList.toggle("hidden");
     }
 
     function createNewEntry(e) {
