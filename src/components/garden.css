@@ -1,5 +1,7 @@
 :root {
     --grid-gap: 20px;
+    --header-height: 50px;
+    --welcome-font-size: 53px;
 }
 
 .garden {
@@ -7,13 +9,46 @@
     background-color: var(--clr-gray-green);
 }
 
-.garden .logout {
-    height: 70px;
-    width: 120px;
-    color: #4D4E4C;
-    font-size: 20px;
-    font-family: "Lora";
-    position: absolute;
-    right: 4vw;
-    top: 10vh;
+.garden header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: var(--header-height);
+    background-color: var(--clr-gray-green);
+    border-bottom: 1px solid var(--clr-eggplant);
+    z-index: 1;
+    padding: 20px;
+}
+
+.garden header .logout {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.garden .mcgregor {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    color: var(--clr-offwhite);
+    margin-top: var(--header-height);
+}
+
+.garden .mcgregor h1 {
+    font-size: var(--welcome-font-size);
+}
+
+@media only screen and (min-width: 768px) {
+    :root {
+        --welcome-font-size: 65px;
+    }
+}
+
+@media only screen and (min-width: 1440px) {
+    :root {
+        --welcome-font-size: 85px;
+    }
 }
