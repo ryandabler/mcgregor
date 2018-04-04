@@ -1,5 +1,7 @@
 :root {
-    --mcgregor-font-size: 40px;
+    --mcgregor-font-size: 53px;
+    --description-size: 83%;
+    --description-font-size: 22px;
 }
 
 .landing-page {
@@ -17,20 +19,49 @@
     background-color: var(--clr-eggplant);
 }
 
+.landing-page > .description {
+    font-size: var(--description-font-size);
+    padding-top: 30px;
+}
+
+.landing-page > .description > p {
+    width: var(--description-size);
+    margin: 0 auto 20px auto;        
+}
+
+.landing-page > .login-form {
+    padding-bottom: 30px;
+}
+
+@media only screen and (min-width: 375px) {
+    :root {
+        --mcgregor-font-size: 64px;
+    }
+}
+
 @media only screen and (min-width: 425px) {
     :root {
-        --mcgregor-font-size: 50px;
+        --mcgregor-font-size: 74px;
     }
 }
 
 @media only screen and (min-width: 768px) {
     :root {
-        --mcgregor-font-size: 90px;
+        --mcgregor-font-size: 120px;
+        --description-size: 75%;
+        --description-font-size: 30px;
+    }
+}
+
+@media only screen and (min-width: 1024px) {
+    :root {
+        --mcgregor-font-size: 120px;
+        --description-size: 80%;
     }
 }
 
 @media only screen and (min-width: 1440px) {
     :root {
-        --mcgregor-font-size: 100px;
+        --mcgregor-font-size: 130px;
     }
 }

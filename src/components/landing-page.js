@@ -17,7 +17,7 @@ export function LandingPage(props) {
             <section className="mcgregor splash flex">
                 <h1>mcGregor</h1>
             </section>
-            <section className="splash">
+            <section className="description">
                 <p>Welcome to mcGregor, a handy tool for garden oversight.</p>
                 <p>Manage your plantings year to year with note cards designed for recording sowing
                     specifications and anticipated harvest dates.</p>
@@ -28,7 +28,7 @@ export function LandingPage(props) {
                     mcGregor can track your experiences to keep your nurtured beds burgeoning.</p>
                 <p>So dig deep and grasp the nettle!</p>
             </section>
-            <section className="splash flex">
+            <section className="login-form flex">
                 <LoginRegForm />
             </section>
         </div>
