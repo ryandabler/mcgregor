@@ -13,10 +13,10 @@ export default function GardenPlots(props) {
     );
 
     return (
-        <div className="garden-plots">
+        <section className="garden-plots">
             {items}
             <Link className="plain-link" to={"/garden/new"}><GardenPlotNew /></Link>
-        </div>
+        </section>
     );
 }
 
