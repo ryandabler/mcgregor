@@ -38,6 +38,7 @@ export class Garden extends React.Component {
                     <button className="logout" onClick={() => this.props.logoff()}>log out</button>
                 </header>
                 <section className="splash-short mcgregor">
+                    <h1>welcome, {this.props.username}</h1>
                 </section>
                 <Switch>
                     <Route exact path ={this.props.match.path} render={() => <GardenPlotsWithProps crops={this.props.crops} />} />
@@ -54,6 +55,7 @@ Garden.propTypes = {
     crops: PropTypes.arrayOf(PropTypes.object),
     id: PropTypes.string,
     authToken: PropTypes.string,
+    username: PropTypes.string,
     requestedUserFromServer: PropTypes.bool,
     getUser: PropTypes.func,
     logoff: PropTypes.func,
@@ -64,6 +66,7 @@ const mapStateToProps = state => ({
     crops: state.garden.crops,
     id: state.garden.id,
     authToken: state.authToken,
+    username: state.username,
     requestedUserFromServer: state.requestedUserFromServer
 });
 
