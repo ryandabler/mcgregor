@@ -20,6 +20,7 @@ export function Journal(props) {
         const journal = journals.find(journal =>
             journal.getAttribute("data-year") === year.toString()
         );
+        journal.classList.toggle("collapsed");
         journal.nextElementSibling.classList.toggle("hidden");
     }
 
