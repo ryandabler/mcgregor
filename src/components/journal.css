@@ -16,8 +16,8 @@
 }
 
 .journal .new-entry {
-    border: 1px solid black;
     padding: 10px;
+    background-color: var(--clr-offwhite);
 }
 
 .journal .new-entry.hidden {
@@ -32,8 +32,13 @@
     width: 100%;
 }
 
-.journal .new-entry input[type=text], .journal .new-entry textarea {
+.journal .new-entry input[type=date], .journal .new-entry textarea {
     width: 100%;
+    border: 1px solid var(--clr-gray-green);
+}
+
+.journal .new-entry textarea {
+    height: 36px;
 }
 
 .journal .new-entry-group {
