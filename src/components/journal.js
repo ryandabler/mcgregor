@@ -20,8 +20,6 @@ export function Journal(props) {
         journals.forEach(journal => {
             if (journal.getAttribute("data-year") === year.toString()) {
                 journal.nextElementSibling.classList.toggle("hidden");
-            } else {
-                journal.nextElementSibling.classList.add("hidden");
             }
         })
     }
