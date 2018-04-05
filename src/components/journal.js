@@ -63,8 +63,8 @@ export function Journal(props) {
                     <textarea id="new-entry-text" name="text" required />
                 </div>
                 <div className="cmd-btns">
-                    <input type="submit" value="Save" />
-                    <button onClick={clearForm} className="form-btn" type="button">Clear</button>
+                    <input type="submit" className="buttonize" value="Save" />
+                    <button onClick={clearForm} className="form-btn buttonize" type="button">Clear</button>
                 </div>
             </form>
             {groups}

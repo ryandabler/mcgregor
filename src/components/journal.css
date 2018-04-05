@@ -58,6 +58,15 @@
     flex: 0 0 12%;
 }
 
+.journal .cmd-btns :not(:last-child) {
+    margin-right: 5px
+}
+
+.journal .cmd-btns * {
+    height: 36px;
+    flex: 0 0 30%;
+}
+
 @media only screen and (min-width: 640px) {
     .journal > h3 {
         width: 65%;
@@ -66,8 +75,6 @@
 
     .journal .new-entry {
         width: 65%;
-        display: flex;
-        justify-content: space-between;
         margin: 0 auto;
     }
 
@@ -77,6 +84,19 @@
     
     .journal .new-text {
         flex: 0 0 60%;
+    }
+}
+
+@media only screen and (min-width: 1024px) {
+    .journal .cmd-btns * {
+        flex: 0 0 25%;
+    }
+}
+
+@media only screen and (min-width: 1440px) {
+    .journal .new-entry {
+        display: flex;
+        justify-content: space-between;
     }
 
     .journal .new-entry-group {
