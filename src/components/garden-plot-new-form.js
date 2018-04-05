@@ -57,7 +57,7 @@ export function GardenPlotNewForm(props) {
                 <input id="newCropSeedSpace" name="seed_spacing" type="number" step=".01" />
             </div>
             <div className="new-crop-form-row">
-                <input className="buttonize" type="submit" />
+                <input className="buttonize" type="submit" value="Submit" />
                 <button className="form-btn buttonize" onClick={cancelNewCrop}>Cancel</button>
             </div>
         </form>
