@@ -31,6 +31,22 @@
     grid-template-columns: 3fr 1fr;
 }
 
+.garden-plot-detail .center-input {
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.garden-plot-detail .edit-crop-form-row {
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.garden-plot-detail .edit-crop-form-row .buttonize {
+    flex: 0 0 30%;
+}
+
 @media only screen and (min-width: 540px) {
     .garden-plot-detail {
         margin-right: auto;

@@ -22,8 +22,8 @@ export function GardenPlotDetails(props) {
         return (
             <form onSubmit={save} className="garden-plot-detail">
                 <h2>
-                    <input type="text" name="name" defaultValue={props.crop.name} />
-                    <input type="text" name="variety" defaultValue={props.crop.variety} />
+                    <input type="text" name="name" className="center-input" defaultValue={props.crop.name} />
+                    <input type="text" name="variety" className="center-input" defaultValue={props.crop.variety} />
                 </h2>
                 <h3>Grow information</h3>
                 <div className="grid group growing-group">
@@ -43,8 +43,10 @@ export function GardenPlotDetails(props) {
                     <span>Seed spacing (in.)</span>
                     <input type="number" name="seed_spacing" step=".01"  defaultValue={props.crop.seed_spacing} />
                 </div>
-                <input type="submit" value="Save" />
-                <button type="button" className="form-btn" onClick={() => props.cancel()}>Cancel</button>
+                <div className="edit-crop-form-row">
+                    <input type="submit" className="buttonize" value="Save" />
+                    <button type="button" className="form-btn buttonize" onClick={() => props.cancel()}>Cancel</button>
+                </div>
             </form>
         );
     } else {
