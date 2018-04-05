@@ -2,6 +2,7 @@
     --mcgregor-font-size: 53px;
     --description-size: 83%;
     --description-font-size: 22px;
+    --chevron-width: 100px;
 }
 
 .landing-page {
@@ -12,6 +13,36 @@
 .landing-page h1 {
     margin: 0;
     font-size: var(--mcgregor-font-size);
+}
+
+.landing-page .chevron {
+    position: absolute;
+    margin-bottom: 6px;
+    height: 10px;
+    width: var(--chevron-width);
+    bottom: 10px;
+}
+
+.landing-page .chevron::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 51%;
+    background-color: var(--clr-offwhite);
+    transform: skew(0deg, 10deg);
+}
+
+.landing-page .chevron::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 50%;
+    background-color: var(--clr-offwhite);
+    transform: skew(0deg, -10deg);
 }
 
 .landing-page > section {
@@ -50,6 +81,7 @@
         --mcgregor-font-size: 120px;
         --description-size: 75%;
         --description-font-size: 30px;
+        --chevron-width: 150px;
     }
 }
 

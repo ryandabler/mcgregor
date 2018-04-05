@@ -16,6 +16,7 @@ export function LandingPage(props) {
         <div className="landing-page">
             <section className="mcgregor splash flex">
                 <h1>mcGregor</h1>
+                <div className="chevron"></div>
             </section>
             <section className="description">
                 <p>Welcome to mcGregor, a handy tool for garden oversight.</p>
