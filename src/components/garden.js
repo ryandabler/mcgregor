@@ -34,7 +34,7 @@ export class Garden extends React.Component {
         const information = (
             <div className={this.props.showInformation ? "info-overlay" : "hidden"}>
                 <div className="content">
-                    <div className="close linkify" onClick={() => this.props.hideInfo()}>x</div>
+                    <div className="close linkify" onClick={() => this.props.hideInfo()}>×</div>
                     <h2>Information</h2>
                     <p>
                         Click &quot;Add New Crop&quot; tile to populate your plot with this season&apos;s crops.
