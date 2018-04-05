@@ -60,7 +60,6 @@ export function GardenPlotNewForm(props) {
                 <input className="buttonize" type="submit" />
                 <button className="form-btn buttonize" onClick={cancelNewCrop}>Cancel</button>
             </div>
-            <p>* = required field</p>
         </form>
     );
 }
