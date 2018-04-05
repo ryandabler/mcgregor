@@ -25,23 +25,23 @@ export function GardenPlotNewForm(props) {
         <form onSubmit={createNewCrop} className="new-crop-form">
             <h2>Add New Crop</h2>
             <div className="new-crop-form-row">
-                <label htmlFor="newCropName">Name</label>
+                <label htmlFor="newCropName" className="required">Name</label>
                 <input id="newCropName" name="name" type="text" required />
             </div>
             <div className="new-crop-form-row">
-                <label htmlFor="newCropVariety">Variety</label>
+                <label htmlFor="newCropVariety" className="required">Variety</label>
                 <input id="newCropVariety" name="variety" type="text" required />
             </div>
             <div className="new-crop-form-row">
-                <label htmlFor="newCropPlantDate">Plant date</label>
+                <label htmlFor="newCropPlantDate" className="required">Plant date</label>
                 <input id="newCropPlantDate" name="plant_date" type="date" required />
             </div>
             <div className="new-crop-form-row">
-                <label htmlFor="newCropGermDays">Days to germination</label>
+                <label htmlFor="newCropGermDays" className="required">Days to germination</label>
                 <input id="newCropGermDays" name="germination_days" type="number" required />
             </div>
             <div className="new-crop-form-row">
-                <label htmlFor="newCropHarvDays">Days to harvest</label>
+                <label htmlFor="newCropHarvDays" className="required">Days to harvest</label>
                 <input id="newCropHarvDays" name="harvest_days" type="number" required />
             </div>
             <div className="new-crop-form-row">
@@ -60,6 +60,7 @@ export function GardenPlotNewForm(props) {
                 <input className="buttonize" type="submit" />
                 <button className="form-btn buttonize" onClick={cancelNewCrop}>Cancel</button>
             </div>
+            <p>* = required field</p>
         </form>
     );
 }

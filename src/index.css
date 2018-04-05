@@ -93,3 +93,9 @@ textarea {
     top: 10px;
     right: 10px;
 }
+
+.required::after {
+    content: "(Required)";
+    font-size: 12px;
+    margin-left: 10px;
+}
