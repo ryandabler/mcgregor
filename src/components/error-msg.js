@@ -7,7 +7,7 @@ export default function ErrorMsg(props) {
     return (
         <li className="error-msg">
             {props.message}
-            <div onClick={() => props.delete(props.id)} className="close linkify">x</div>
+            <div onClick={() => props.delete(props.id)} className="close linkify">×</div>
         </li>
     );
 }

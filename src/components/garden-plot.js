@@ -13,7 +13,7 @@ export function GardenPlot(props) {
 
     return (
         <div className="garden-plot">
-            <span onClick={() => props.deleteCard(props.info.id, props.authToken)} className="x">x</span>
+            <span onClick={() => props.deleteCard(props.info.id, props.authToken)} className="x">×</span>
             <Link className="plain-link" to={`/garden/${props.info.id}`}>
                 <h2>{props.info.name}</h2>
                 <h3 className="variety">{props.info.variety}</h3>

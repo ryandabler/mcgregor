@@ -23,7 +23,7 @@ export function JournalEntry(props) {
                 <span className="journal-date" onClick={() => props.edit(props.id)}>{date}</span>
                 <span className="journal-scope" onClick={() => props.edit(props.id)}>{props.scope}</span>
                 <span className="journal-note" onClick={() => props.edit(props.id)}>{props.text}</span>
-                <span className="journal-opts x" onClick={() => props.delete(props.id, props.authToken)}>x</span>
+                <span className="journal-opts x" onClick={() => props.delete(props.id, props.authToken)}>×</span>
             </div>
         );
     } else {
