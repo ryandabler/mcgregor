@@ -24,7 +24,7 @@ export function GardenPlotDetails(props) {
 
     const btnController = (
         <div className="btn-ctrlr">
-            <button onClick={goBack} className="back-btn buttonize">Back</button>
+            <button onClick={goBack} className="back-btn buttonize">Close</button>
         </div>
     );
 
