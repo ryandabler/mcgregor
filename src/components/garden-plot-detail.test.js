@@ -97,7 +97,7 @@ describe("<GardenPlotDetail />", () => {
         const dummy = jest.fn();
 
         const wrapper = mount(<GardenPlotDetails crop={crop} authToken={"abcd"} match={match} dispatch={dummy} saveChanges={saveChanges} cancel={cancel} editEntry={dummy} />);
-        wrapper.simulate("submit");
+        wrapper.find("form").simulate("submit");
 
         expect(saveChanges).toHaveBeenCalledWith(crop.id, "abcd", newCrop);
         expect(cancel).toHaveBeenCalled();
