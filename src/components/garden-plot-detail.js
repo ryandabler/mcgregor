@@ -20,6 +20,7 @@ export function GardenPlotDetails(props) {
     const plant_date = makeDateFromISOString(new Date(props.crop.plant_date).toISOString());
     if (props.crop.status === "editing") {
         return (
+            <div>
             <form onSubmit={save} className="garden-plot-detail">
                 <h2>
                     <input type="text" name="name" className="center-input" defaultValue={props.crop.name} />
@@ -48,9 +49,11 @@ export function GardenPlotDetails(props) {
                     <button type="button" className="form-btn buttonize" onClick={() => props.cancel()}>Cancel</button>
                 </div>
             </form>
+            </div>
         );
     } else {
         return (
+            <div>
             <div className="garden-plot-detail">
                 <h2>
                     {props.crop.name}
@@ -74,6 +77,10 @@ export function GardenPlotDetails(props) {
                     <span>Seed spacing (in.)</span>
                     <span onClick={() => props.editEntry(props.match.params.id)}>{props.crop.seed_spacing}</span>
                 </div>
+            </div>
+            <div className="btn-ctrlr">
+                <button className="back-btn buttonize">Back</button>
+            </div>
             </div>
     )}
 }

@@ -47,6 +47,18 @@
     flex: 0 0 30%;
 }
 
+.btn-ctrlr {
+    max-width: 500px;
+    margin: 0 auto 20px auto;
+    display: flex;
+    justify-content: space-around;
+}
+
+.btn-ctrlr .back-btn {
+    flex: 1 1;
+    max-width: 33%;
+}
+
 @media only screen and (min-width: 540px) {
     .garden-plot-detail {
         margin-right: auto;
