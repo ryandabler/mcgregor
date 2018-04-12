@@ -45,6 +45,7 @@ export function LoginRegForm(props) {
                 <input type="password" id="password" name="password" required />
                 <input type="submit" value="Login" />
                 {msg}
+                <p className="demo">Demo account: demo / demo</p>
             </form>
         );
     } else {
