@@ -1,5 +1,6 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
+import { createMemoryHistory } from 'history';
 
 import { GardenPlotDetails } from './garden-plot-detail';
 import { makeISODate, makeDateFromISOString } from "../utilities";
@@ -102,5 +103,18 @@ describe("<GardenPlotDetail />", () => {
         expect(saveChanges).toHaveBeenCalledWith(crop.id, "abcd", newCrop);
         expect(cancel).toHaveBeenCalled();
         expect(dummy).not.toHaveBeenCalled();
+    });
+
+    it("Should dispatch action and change location when back button is pushed", () => {
+        const history = createMemoryHistory({
+            initialEntries: [ "/garden/Abc" ]
+        });
+        const cancel = jest.fn();
+
+        const wrapper = mount(<GardenPlotDetails crop={crop} authToken={"abcd"} match={match} cancel={cancel} history={history} />);
+        wrapper.find(".back-btn").simulate("click");
+
+        expect(cancel).toHaveBeenCalled();
+        expect(history.entries[history.index].pathname).toEqual("/garden/");
     });
 });
