@@ -17,6 +17,17 @@ export function GardenPlotDetails(props) {
         props.cancel();
     }
 
+    function goBack() {
+        props.cancel();
+        props.history.push("./");
+    }
+
+    const btnController = (
+        <div className="btn-ctrlr">
+            <button onClick={goBack} className="back-btn buttonize">Back</button>
+        </div>
+    );
+
     const plant_date = makeDateFromISOString(new Date(props.crop.plant_date).toISOString());
     if (props.crop.status === "editing") {
         return (
@@ -49,6 +60,7 @@ export function GardenPlotDetails(props) {
                         <button type="button" className="form-btn buttonize" onClick={() => props.cancel()}>Cancel</button>
                     </div>
                 </form>
+                {btnController}
             </div>
         );
     } else {
@@ -78,9 +90,7 @@ export function GardenPlotDetails(props) {
                         <span onClick={() => props.editEntry(props.match.params.id)}>{props.crop.seed_spacing}</span>
                     </div>
                 </div>
-                <div className="btn-ctrlr">
-                    <button className="back-btn buttonize">Back</button>
-                </div>
+                {btnController}
             </div>
     )}
 }
@@ -91,7 +101,8 @@ GardenPlotDetails.propTypes = {
     authToken: PropTypes.string,
     saveChanges: PropTypes.func,
     editEntry: PropTypes.func,
-    cancel: PropTypes.func
+    cancel: PropTypes.func,
+    history: PropTypes.object
 }
 
 const mapDispatchToProps = (dispatch) => {
