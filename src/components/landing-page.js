@@ -12,13 +12,22 @@ export function LandingPage(props) {
         return <Redirect to="/garden" />;
     }
 
+    let descriptionRef;
+    
+    function scrollDown() {
+        window.scrollTo({
+            behavior: "smooth",
+            top: descriptionRef.offsetTop
+        });
+    }
+
 	return (
         <div className="landing-page">
             <section className="mcgregor splash flex">
                 <h1>mcGregor</h1>
-                <div className="chevron"></div>
+                <div className="chevron linkify" onClick={scrollDown} ></div>
             </section>
-            <section className="description">
+            <section className="description" ref={section => descriptionRef = section}>
                 <p>Welcome to mcGregor, a handy tool for garden oversight.</p>
                 <p>Manage your plantings year to year with note cards designed for recording sowing
                     specifications and anticipated harvest dates.</p>
